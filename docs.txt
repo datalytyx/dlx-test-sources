@@ -1,0 +1,895 @@
+
+### faker.providers.address
+
+	fake.address()                                                                                      # 9791 Stout Loop Suite 378
+	                                                                                                      Alvarezfurt, NY 69075
+	fake.bothify(text="## ??", letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")          # 60 Id
+	fake.building_number()                                                                              # 904
+	fake.city()                                                                                         # Colonburgh
+	fake.city_prefix()                                                                                  # New
+	fake.city_suffix()                                                                                  # side
+	fake.country()                                                                                      # Heard Island and McDonald Islands
+	fake.country_code(representation="alpha-2")                                                         # UG
+	fake.hexify(text="^^^^", upper=False)                                                               # 6b9f
+	fake.language_code()                                                                                # ce
+	fake.lexify(text="????", letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")            # tbzn
+	fake.locale()                                                                                       # os_RU
+	fake.military_apo()                                                                                 # PSC 4686, Box 9589
+	fake.military_dpo()                                                                                 # Unit 6935 Box 0492
+	fake.military_ship()                                                                                # USNV
+	fake.military_state()                                                                               # AE
+	fake.numerify(text="###")                                                                           # 899
+	fake.postalcode()                                                                                   # 14142
+	fake.postalcode_in_state(state_abbr=None)                                                           # 73055
+	fake.postalcode_plus4()                                                                             # 83466-9397
+	fake.postcode()                                                                                     # 35508
+	fake.postcode_in_state(state_abbr=None)                                                             # 46130
+	fake.random_choices(elements=('a', 'b', 'c'), length=None)                                          # ['c', 'c']
+	fake.random_digit()                                                                                 # 1
+	fake.random_digit_not_null()                                                                        # 6
+	fake.random_digit_or_empty()                                                                        # 2
+	fake.random_element(elements=('a', 'b', 'c'))                                                       # a
+	fake.random_elements(elements=('a', 'b', 'c'), length=None, unique=False)                           # ['c', 'c']
+	fake.random_int(min=0, max=9999, step=1)                                                            # 724
+	fake.random_letter()                                                                                # M
+	fake.random_letters(length=16)                                                                      # ['F', 'c', 'L', 'r', 'T', 'Y', 'A', 'Z', 'q', 'e',
+	                                                                                                       'F', 'b', 'k', 'v', 'F', 'i']
+	fake.random_lowercase_letter()                                                                      # b
+	fake.random_number(digits=None, fix_len=False)                                                      # 41134
+	fake.random_sample(elements=('a', 'b', 'c'), length=None)                                           # ['a', 'b']
+	fake.random_uppercase_letter()                                                                      # M
+	fake.randomize_nb_elements(number=10, le=False, ge=False, min=None, max=None)                       # 11
+	fake.secondary_address()                                                                            # Suite 698
+	fake.state()                                                                                        # Colorado
+	fake.state_abbr(include_territories=True)                                                           # SD
+	fake.street_address()                                                                               # 3464 Kelley Branch
+	fake.street_name()                                                                                  # Bethany Brook
+	fake.street_suffix()                                                                                # Plains
+	fake.zipcode()                                                                                      # 83362
+	fake.zipcode_in_state(state_abbr=None)                                                              # 06325
+	fake.zipcode_plus4()                                                                                # 82727-5447
+
+### faker.providers.automotive
+
+	fake.license_plate()                                                                                # 47R J09
+
+### faker.providers.bank
+
+	fake.bank_country()                                                                                 # GB
+	fake.bban()                                                                                         # BRZG7499525255944
+	fake.iban()                                                                                         # GB94UCVZ2483435261195
+
+### faker.providers.barcode
+
+	fake.ean(length=13)                                                                                 # 5372153974312
+	fake.ean13()                                                                                        # 0835924519594
+	fake.ean8()                                                                                         # 26484754
+
+### faker.providers.color
+
+	fake.color_name()                                                                                   # MediumTurquoise
+	fake.hex_color()                                                                                    # #4a5793
+	fake.rgb_color()                                                                                    # 214,209,18
+	fake.rgb_css_color()                                                                                # rgb(211,79,102)
+	fake.safe_color_name()                                                                              # black
+	fake.safe_hex_color()                                                                               # #ddee00
+
+### faker.providers.company
+
+	fake.bs()                                                                                           # mesh rich models
+	fake.catch_phrase()                                                                                 # Assimilated high-level pricing structure
+	fake.company()                                                                                      # Richmond, Stephens and Preston
+	fake.company_suffix()                                                                               # Ltd
+
+### faker.providers.credit_card
+
+	fake.credit_card_expire(start="now", end="+10y", date_format="%m/%y")                               # 09/24
+	fake.credit_card_full(card_type=None)                                                               # Mastercard
+	                                                                                                      John Johnson
+	                                                                                                      5583690071284303 09/28
+	                                                                                                      CVV: 860
+	fake.credit_card_number(card_type=None)                                                             # 3552487053318122
+	fake.credit_card_provider(card_type=None)                                                           # VISA 16 digit
+	fake.credit_card_security_code(card_type=None)                                                      # 207
+
+### faker.providers.currency
+
+	fake.cryptocurrency()                                                                               # ('BCN', 'Bytecoin')
+	fake.cryptocurrency_code()                                                                          # BCH
+	fake.cryptocurrency_name()                                                                          # BlackCoin
+	fake.currency()                                                                                     # ('FJD', 'Fijian dollar')
+	fake.currency_code()                                                                                # FJD
+	fake.currency_name()                                                                                # Lithuanian litas
+
+### faker.providers.date_time
+
+	fake.am_pm()                                                                                        # AM
+	fake.century()                                                                                      # II
+	fake.date(pattern="%Y-%m-%d", end_datetime=None)                                                    # 1991-12-28
+	fake.date_between(start_date="-30y", end_date="today")                                              # 2016-03-20
+	fake.date_between_dates(date_start=None, date_end=None)                                             # 2019-10-20
+	fake.date_object(end_datetime=None)                                                                 # 1973-09-24
+	fake.date_of_birth(tzinfo=None, minimum_age=0, maximum_age=115)                                     # 2009-04-23
+	fake.date_this_century(before_today=True, after_today=False)                                        # 2004-04-25
+	fake.date_this_decade(before_today=True, after_today=False)                                         # 2010-10-14
+	fake.date_this_month(before_today=True, after_today=False)                                          # 2019-10-04
+	fake.date_this_year(before_today=True, after_today=False)                                           # 2019-01-20
+	fake.date_time(tzinfo=None, end_datetime=None)                                                      # 1974-08-28 12:08:35
+	fake.date_time_ad(tzinfo=None, end_datetime=None, start_datetime=None)                              # 1774-10-27 11:53:05
+	fake.date_time_between(start_date="-30y", end_date="now", tzinfo=None)                              # 2014-01-19 12:41:14
+	fake.date_time_between_dates(datetime_start=None, datetime_end=None, tzinfo=None)                   # 2019-10-20 08:41:17
+	fake.date_time_this_century(before_now=True, after_now=False, tzinfo=None)                          # 2017-07-15 05:23:36
+	fake.date_time_this_decade(before_now=True, after_now=False, tzinfo=None)                           # 2018-07-18 01:33:45
+	fake.date_time_this_month(before_now=True, after_now=False, tzinfo=None)                            # 2019-10-12 21:26:26
+	fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None)                             # 2019-05-03 16:21:59
+	fake.day_of_month()                                                                                 # 08
+	fake.day_of_week()                                                                                  # Wednesday
+	fake.future_date(end_date="+30d", tzinfo=None)                                                      # 2019-10-24
+	fake.future_datetime(end_date="+30d", tzinfo=None)                                                  # 2019-11-06 09:58:13
+	fake.iso8601(tzinfo=None, end_datetime=None)                                                        # 1996-04-03T00:56:13
+	fake.month()                                                                                        # 01
+	fake.month_name()                                                                                   # July
+	fake.past_date(start_date="-30d", tzinfo=None)                                                      # 2019-10-18
+	fake.past_datetime(start_date="-30d", tzinfo=None)                                                  # 2019-10-05 03:00:41
+	fake.time(pattern="%H:%M:%S", end_datetime=None)                                                    # 14:12:57
+	fake.time_delta(end_datetime=None)                                                                  # 0:00:00
+	fake.time_object(end_datetime=None)                                                                 # 08:51:02
+	fake.time_series(start_date="-30d", end_date="now", precision=None, distrib=None, tzinfo=None)      # <generator object Provider.time_series at 0x7f1d1e
+	                                                                                                      8ff408>
+	fake.timezone()                                                                                     # Europe/Zurich
+	fake.unix_time(end_datetime=None, start_datetime=None)                                              # 265761895
+	fake.year()                                                                                         # 1978
+
+### faker.providers.file
+
+	fake.file_extension(category=None)                                                                  # pages
+	fake.file_name(category=None, extension=None)                                                       # condition.bmp
+	fake.file_path(depth=1, category=None, extension=None)                                              # /herself/site.jpg
+	fake.mime_type(category=None)                                                                       # text/javascript
+	fake.unix_device(prefix=None)                                                                       # /dev/vdj
+	fake.unix_partition(prefix=None)                                                                    # /dev/vds6
+
+### faker.providers.geo
+
+	fake.coordinate(center=None, radius=0.001)                                                          # 44.569295
+	fake.latitude()                                                                                     # 33.705772
+	fake.latlng()                                                                                       # (Decimal('-85.1882525'), Decimal('-48.421905'))
+	fake.local_latlng(country_code="US", coords_only=False)                                             # ('34.25628', '-78.04471', 'Leland', 'US', 'America
+	                                                                                                      /New_York')
+	fake.location_on_land(coords_only=False)                                                            # ('41.63976', '2.35739', 'Cardedeu', 'ES', 'Europe/
+	                                                                                                      Madrid')
+	fake.longitude()                                                                                    # 136.701249
+
+### faker.providers.internet
+
+	fake.ascii_company_email(*args, **kwargs)                                                           # colemanronald@zuniga.info
+	fake.ascii_email(*args, **kwargs)                                                                   # davidli@clay-sparks.biz
+	fake.ascii_free_email(*args, **kwargs)                                                              # anne19@hotmail.com
+	fake.ascii_safe_email(*args, **kwargs)                                                              # joelprice@example.com
+	fake.company_email(*args, **kwargs)                                                                 # donna62@peterson.com
+	fake.domain_name(*args, **kwargs)                                                                   # horton-mitchell.com
+	fake.domain_word(*args, **kwargs)                                                                   # davies
+	fake.email(*args, **kwargs)                                                                         # spencercory@yahoo.com
+	fake.free_email(*args, **kwargs)                                                                    # molly21@gmail.com
+	fake.free_email_domain(*args, **kwargs)                                                             # gmail.com
+	fake.hostname(*args, **kwargs)                                                                      # srv-96.greene.com
+	fake.image_url(width=None, height=None)                                                             # https://placekitten.com/170/768
+	fake.ipv4(network=False, address_class=None, private=None)                                          # 192.0.10.145
+	fake.ipv4_network_class()                                                                           # b
+	fake.ipv4_private(network=False, address_class=None)                                                # 172.20.255.97
+	fake.ipv4_public(network=False, address_class=None)                                                 # 168.83.62.32
+	fake.ipv6(network=False)                                                                            # 7bc6:bc8e:bf87:12c4:7f7a:32c4:188a:543c
+	fake.mac_address()                                                                                  # e2:5f:45:88:65:4b
+	fake.safe_email(*args, **kwargs)                                                                    # leslie38@example.net
+	fake.slug(*args, **kwargs)                                                                          # fast-relate
+	fake.tld()                                                                                          # net
+	fake.uri()                                                                                          # http://www.mendoza.com/homepage.html
+	fake.uri_extension()                                                                                # .php
+	fake.uri_page()                                                                                     # search
+	fake.uri_path(deep=None)                                                                            # tag/tags/tag
+	fake.url(schemes=None)                                                                              # https://olson-le.net/
+	fake.user_name(*args, **kwargs)                                                                     # jessicahorne
+
+### faker.providers.isbn
+
+	fake.isbn10(separator="-")                                                                          # 0-313-43342-9
+	fake.isbn13(separator="-")                                                                          # 978-1-04-205261-5
+
+### faker.providers.job
+
+	fake.job()                                                                                          # Programme researcher, broadcasting/film/video
+
+### faker.providers.lorem
+
+	fake.paragraph(nb_sentences=3, variable_nb_sentences=True, ext_word_list=None)                      # Begin street factor ground. Safe from ahead former
+	                                                                                                       here back popular score.
+	fake.paragraphs(nb=3, ext_word_list=None)                                                           # ['By five third baby item just. Training best wait
+	                                                                                                       hear significant serious far. Blue war full not m
+	                                                                                                      oment.', 'Goal responsibility question not conside
+	                                                                                                      r population piece. He turn lawyer board. Center f
+	                                                                                                      ormer result our never positive leader.', 'Relatio
+	                                                                                                      nship blue Congress network. Science grow entire h
+	                                                                                                      imself their among measure.']
+	fake.sentence(nb_words=6, variable_nb_words=True, ext_word_list=None)                               # Receive method themselves war large.
+	fake.sentences(nb=3, ext_word_list=None)                                                            # ['Good suggest born establish.', 'Race nor travel 
+	                                                                                                      born.', 'Note prove hospital work campaign.']
+	fake.text(max_nb_chars=200, ext_word_list=None)                                                     # Teacher sometimes name color. Dark economic sit ai
+	                                                                                                      r. Through we himself need on plant. Rather federa
+	                                                                                                      l team machine over risk able.
+	fake.texts(nb_texts=3, max_nb_chars=200, ext_word_list=None)                                        # ['Growth do back.\nUpon follow that. Ball stuff si
+	                                                                                                      mple almost. Science gas southern use.\nRecognize 
+	                                                                                                      determine firm skin impact suddenly. Hot list atte
+	                                                                                                      ntion system.', 'Century least crime decide color 
+	                                                                                                      identify. Pm cause participant kind.\nSuccess idea
+	                                                                                                       fish allow. Dream always manage.\nBehind listen c
+	                                                                                                      learly performance get. Organization space fact wo
+	                                                                                                      nder.', 'Customer wind local sound true vote. Him 
+	                                                                                                      seem place. Because fall sure boy hope free.\nStud
+	                                                                                                      y ten history visit. Type guy increase director si
+	                                                                                                      ngle lose. Start medical sell trip recent.']
+	fake.word(ext_word_list=None)                                                                       # western
+	fake.words(nb=3, ext_word_list=None, unique=False)                                                  # ['bit', 'notice', 'body']
+
+### faker.providers.misc
+
+	fake.binary(length=1048576)                                                                         # b')k{\x18NI\x059u\x93jp\xd6\xa3`\xefZ(\x159\x0c3f\
+	                                                                                                      x82+7\xee\xccr7\xf8\xb1\xce\xe48\x95\xe3\xc2i;\x03
+	                                                                                                      \xed\x99\'\xae\xb1b\xf8$\xba\xd8"m\x7f\xb3\x1f\xab
+	                                                                                                      x\xdc\xe0+\x80o\xa5Tio\xed\xd6\xbca\xd1\xf7\xd0\xf
+	                                                                                                      0\x11\x95\t^1\x0eM\x96\x1f\xf1\x14cj\x8d\xfb\xdd\x
+	                                                                                                      13\xb0\xefd\x93I4\xe3\x99\xd2\xe3\'iN\xf9\x91\xc0\
+	                                                                                                      xbeR\xdc\x9f\xed\xf2q\xb8\x93\x92\x0f\xed\xbf\xb7\
+	                                                                                                      x98|\x05\x07CL\nT\x19\x00h\xee\xb5\xb9\x11\xfa^z\x
+	                                                                                                      06\x8d\xdd\xad\x1a0\xe6\x9f\x86~\xff\xd6\x85\xad\x
+	                                                                                                      16\x0f\xdb\x13T~E\xd3\xacD\x8f\x08V\x17\x08\xf8\x1
+	                                                                                                      e\xeb\xef\xd4\xbdW\x96]%G4\xd0\xb4\xe3\xe8\x8e\x82
+	                                                                                                      \xe7\x90O\xa1G\x13\xd2\xf8v\xea\x8b\x0f\xa2;\xf9@\
+	                                                                                                      x8f\x894\xde&\xbe\x11\xf9\xe5c\x9f\xb1\\\xc4\xcb\x
+	                                                                                                      a1\x19\x8am\x13\xa2\xa2\xc8\x90\x12C\xd5\x80\xd3(\
+	                                                                                                      xfduf(:?\x02\x90#\xdc\x89\xf7\xec\x89\x94\x18Yx\xf
+	                                                                                                      9VIL[\xef\xcb\x04H\xc8\x1b\\Z\x9faBK\x18Mm\xc36\xd
+	                                                                                                      d\xc7]\r\x8f5C:J\x97@\xc4\xb4\'b\x03\xbdH\xf4} \xb
+	                                                                                                      5\xf85\xa0\xf2\n\xb0\xe2\xd0\xed\x9c\xe2L\xe9\xc4f
+	                                                                                                      \x97[\x99U\xa2\x88gB\x1b\x1d\xd1[:\x07P>\xce\xbf\x
+	                                                                                                      8c/\xed\xe1\xa6Jo\xa5\xe9\xbf\xa2\xb7\xb0\xae\x92\
+	                                                                                                      x98\x8a]?q\xae\x7f\x90\xde\x88\xe7B\xf4\xabZ\xe2\x
+	                                                                                                      1a#\xd5\xd9\x95\x1ey\xc3\xc4l&\xbbm\x1c\xfc<\xdc\x
+	                                                                                                      c7\xb9\x06\x99\xbe\xbd\xcc\xe0\xbe5\xfdJ\xa5p\x00\
+	                                                                                                      xbd \x00G)k\xa4\xde\x90d\x0f\x0e\xa0\xe3\xbam\xe1\
+	                                                                                                      xad=\xc1s\xf3G\x9d\x92a<X+\xdc\x0e\xb3\xc3\x03\xfa
+	                                                                                                      ^\xf2\x8cG\xc7h\xdd\x98\xdf\x921* \xe2\xa4!\x04\xa
+	                                                                                                      6\xf5\xd80\xa9\xd6s\xa5g\xc8-\x1a\rz+\\v\xf0\xca\x
+	                                                                                                      91\xb0\xe9tg\x98\xafD\xba\xb5\xa1h\xe4\x1e\xdd\x9f
+	                                                                                                      c\xfcn^5\xe9=\xcbl\xa1_\x13\xa7\xff~\xc4\x1dy\xcd\
+	                                                                                                      xbb\xc7rZ\x91\x80\xb0\x86\x1b\xae8jp\x9b\xe2XV}\xf
+	                                                                                                      7kn\xbavY\xc9\xd9Z\x9a\xe2\xbf\x1c(\xea\xfa\tZ\x89
+	                                                                                                      \xd6\xfdq\xc7\xf8\xb1\xcf\xf7[:\xd6\xadI\xa47\xb2K
+	                                                                                                      \x98\xf4M\xe4\xbf\xfc\x15\xb1g/\x9b\x93\xa5\xd2\x9
+	                                                                                                      5\x05\xd8\xb3\xd8\xf5\xbd\\\x7f\x97`\xc58\xa5R\xa3
+	                                                                                                      \xf8X\xc9\xeed\xd1\xbb6\x1c\xf6gTU=3<\xc6\xa1\xcb\
+	                                                                                                      x8c!\xf5\x8d\xa0u\x85<l8\xf4\xbe\xdeK\x86\xbd_\x87
+	                                                                                                      fr~\x84\xb1\xaf62E*s\xea\xaa:\xa7HT\x15\xfb\x89D\x
+	                                                                                                      be\xe1\xdb\xda\xdc\x83\x97\x8b\xc6N\x17\x10W\xdc\x
+	                                                                                                      00lCj\xbe\x83\x16\xb7g<Qo%\xf8\xdb\x93L;\xacR\x84F
+	                                                                                                      ,(F0\x03*\xc8\xe9\xe2\x86Z\x01#\x90\xd4W\x03\x10\x
+	                                                                                                      ac\xa7\xb94\x16l\xc6\x05\xe3\xa7r\xe1\xe7y\x02\xb0
+	                                                                                                      nuP\xd4\xc81\xca\xa1:|\x941\x0c\xcf\r\xadrd\xe8\x8
+	                                                                                                      7\xc3k\xda\x9d [\xe73\x91K\xe0@\x9dVs\xbb\x97>%\xf
+	                                                                                                      f"\xf5~\xd4\n\x05\x0b\xf2\x02\x1d\xf5\x06\x18\xb0\
+	                                                                                                      x97\x9c\xf1\xfb\x99\x9cC\x9e-\xcf\x16:by*Q\xc8GT*\
+	                                                                                                      x9a\x03\xfd"\xb9\xff+\xd7\xaa\xc8\xde\xee\xaf\x0e\
+	                                                                                                      xa5\x9c\xf6\x84\xf2\x83i\xb71\x86\xf5\xd7\xf4g\xac
+	                                                                                                      \x1dz\x18\xcd{\xc5\\\xa32[\xe7\x82\xdc\xd7\xae\xc1
+	                                                                                                      \xdc\x14\xba\xc9\xba\xc8\x8bpFtd\x0f\xd35\xcd\xf4\
+	                                                                                                      xf4\xc1\xddf\xf2\xca\x1dR\x0bc1F\xca;>5m\x96A\xd8\
+	                                                                                                      xdeJPn\xd8\xfe\xa1\xe2\x0e\x82\t\xaf\xa2\xc5m>\x90
+	                                                                                                      e+i\xc7|q\xaau/\xaa\x9bnj\xcb\x00\x98zJ\x8e$\x80\x
+	                                                                                                      b0h\x94O\xb0nf;\xe8\xda\x80\x1c\xca\x87\x93f\xe6h\
+	                                                                                                      x9f\xb2-6\xd7\xcc\xb0y\x80?>\x0cX\xa3\xb0Vr\xa7\x1
+	                                                                                                      8:\xa2"\xd0\xab\x94\n\xf9\xe2\xe0V\xf7\x00=W\xbd\x
+	                                                                                                      f5\x8e\xc3e\xeb\xc0\xf2\xb9\xbb\x05\xa8\xf5\xfd\xe
+	                                                                                                      7\x05\xf1%\x9c_w:XY\x85\xa0(\xb9\x02q\xaa\x07\x1b\
+	                                                                                                      xc2T6\xe7\xb2\xf8\x04\xeb\xde)7.+g5\x8f*\xaa\x0ek\
+	                                                                                                      x19\xe1\x13?m\xa7\xe3\x9b\xa4\x07b\x07o\xdeA\xb2\x
+	                                                                                                      e3'
+	fake.boolean(chance_of_getting_true=50)                                                             # False
+	fake.md5(raw_output=False)                                                                          # 68354fd67990cc8ef9abe60dbb615acb
+	fake.null_boolean()                                                                                 # True
+	fake.password(length=10, special_chars=True, digits=True, upper_case=True, lower_case=True)         # tA2^TxCl*t
+	fake.sha1(raw_output=False)                                                                         # 67ac6ff2414f7981a037f52e02be4d4850b9a60f
+	fake.sha256(raw_output=False)                                                                       # 9b2a566299f59f1fa5c61bf17d5f1e3b46be77d8f451136431
+	                                                                                                      acc0012d5dcdec
+	fake.uuid4(cast_to=<class 'str'>)                                                                   # 4da1884e-bacd-4244-a2f7-3386ed95effa
+
+### faker.providers.person
+
+	fake.first_name()                                                                                   # Brooke
+	fake.first_name_female()                                                                            # Jennifer
+	fake.first_name_male()                                                                              # Tyler
+	fake.last_name()                                                                                    # Jordan
+	fake.last_name_female()                                                                             # Robinson
+	fake.last_name_male()                                                                               # Garcia
+	fake.name()                                                                                         # Kyle Diaz
+	fake.name_female()                                                                                  # Marie Ellis
+	fake.name_male()                                                                                    # Kyle Williamson
+	fake.prefix()                                                                                       # Mr.
+	fake.prefix_female()                                                                                # Mrs.
+	fake.prefix_male()                                                                                  # Dr.
+	fake.suffix()                                                                                       # DDS
+	fake.suffix_female()                                                                                # MD
+	fake.suffix_male()                                                                                  # PhD
+
+### faker.providers.phone_number
+
+	fake.msisdn()                                                                                       # 7762342894023
+	fake.phone_number()                                                                                 # 379.145.3810x5747
+
+### faker.providers.profile
+
+	fake.profile(fields=None, sex=None)                                                                 # {'job': 'Midwife', 'company': 'Fields, Logan and W
+	                                                                                                      hite', 'ssn': '471-75-9252', 'residence': '5313 Co
+	                                                                                                      x Mountains Apt. 020\nWest George, TN 62961', 'cur
+	                                                                                                      rent_location': (Decimal('46.5916085'), Decimal('1
+	                                                                                                      60.626977')), 'blood_group': 'AB+', 'website': ['h
+	                                                                                                      ttps://www.thomas.net/'], 'username': 'brian60', '
+	                                                                                                      name': 'Chase Patterson', 'sex': 'M', 'address': '
+	                                                                                                      USNV Williamson\nFPO AP 35485', 'mail': 'michaelsm
+	                                                                                                      ith@hotmail.com', 'birthdate': datetime.date(2012,
+	                                                                                                       5, 24)}
+	fake.simple_profile(sex=None)                                                                       # {'username': 'rmcdaniel', 'name': 'Jennifer Rich',
+	                                                                                                       'sex': 'F', 'address': '6560 Dominguez Island\nKa
+	                                                                                                      itlynfort, LA 81045', 'mail': 'coxjill@gmail.com',
+	                                                                                                       'birthdate': datetime.date(1925, 3, 8)}
+
+### faker.providers.python
+
+	fake.pybool()                                                                                       # True
+	fake.pydecimal(left_digits=None, right_digits=None, positive=False, min_value=None, max_value=None) # 62148.985
+	fake.pydict(nb_elements=10, variable_nb_elements=True, *value_types)                                # {'only': datetime.datetime(2009, 1, 31, 8, 59, 4),
+	                                                                                                       'the': 'PnRKHHOirdZqFPLkKuQH', 'this': 'mTnmUgMAX
+	                                                                                                      bTvSXRCWqsM', 'close': 'ViZNInmJEOyksZITDwgu', 'st
+	                                                                                                      ill': -76779.52542, 'street': 'http://simon-baker.
+	                                                                                                      com/main.htm', 'yard': 'HmJVScdDhGIfsBeuAbfq', 'se
+	                                                                                                      rvice': -51849313217765.0, 'hot': Decimal('8942159
+	                                                                                                      20.25826'), 'deal': 'jJdzIhlzvITmpJTHiGxO', 'prese
+	                                                                                                      nt': 'fjgXqkOWpwAmvSGFiITB', 'decision': 'ySUZbuRC
+	                                                                                                      TidyQjqFVrVx'}
+	fake.pyfloat(left_digits=None, right_digits=None, positive=False, min_value=None, max_value=None)   # -45.361043152967
+	fake.pyint(min_value=0, max_value=9999, step=1)                                                     # 5878
+	fake.pyiterable(nb_elements=10, variable_nb_elements=True, *value_types)                            # ['gSJGyaWvUcrRsHdOpMtu', 'EzAepdTLCqmlLuXGpKXh', D
+	                                                                                                      ecimal('69460036746.7426'), -817753128282.449, 494
+	                                                                                                      2, 'lturner@yahoo.com']
+	fake.pylist(nb_elements=10, variable_nb_elements=True, *value_types)                                # ['https://marshall.com/', 'https://www.gray.info/a
+	                                                                                                      pp/list/author/', Decimal('24614.0'), 'vuPSwaNtTxm
+	                                                                                                      RJHfDVVVM', 'bscRoratLUTWamqyyuta', -1716966759916
+	                                                                                                      61.0, datetime.datetime(1976, 6, 28, 4, 0, 12), 'T
+	                                                                                                      maJqPcldfIKtRRiXsCU', 'http://davis-rubio.com/', '
+	                                                                                                      ypfdfdTmqHjYMOBKSkHq']
+	fake.pyset(nb_elements=10, variable_nb_elements=True, *value_types)                                 # {'VpUjxghBsBlqqUevSDnZ', Decimal('-558847366575.63
+	                                                                                                      '), 5001, Decimal('64300.78'), 'tAoInVsleglTvxXYNm
+	                                                                                                      rA', 'hawSooPeaIeBhFSxoGKc', 'SuaPWcxUrpOwZSSKkJEz
+	                                                                                                      ', 'DnNBpQxeocwVWHimktHb', 'slmMFxyFJbRyrXNsbwwt'}
+	                                                                                                      
+	fake.pystr(min_chars=None, max_chars=20)                                                            # zwIQuFoxHcAAjmQskoBu
+	fake.pystruct(count=10, *value_types)                                                               # (['http://www.lawrence-gomez.net/blog/categories/f
+	                                                                                                      aq.html', 'https://www.fitzgerald.com/', 'http://p
+	                                                                                                      ark.biz/categories/main/search/author.htm', dateti
+	                                                                                                      me.datetime(1981, 12, 21, 13, 23, 10), 6643, 'kCFh
+	                                                                                                      BiHgPRESSJTmfVTA', Decimal('-5.76403984'), Decimal
+	                                                                                                      ('8558545.6635075'), Decimal('5442357.489083'), 'T
+	                                                                                                      gQJcbVpCovzHoRONPDJ'], {'present': 'qlAFeEpYWgKrfT
+	                                                                                                      VOHYCJ', 'east': Decimal('47692432.9'), 'remain': 
+	                                                                                                      'https://jones.info/post/', 'learn': 'hseWjmZfRckZ
+	                                                                                                      xKpFcmIL', 'class': 'GPYdiQSLRobZQEpTTXMX', 'inves
+	                                                                                                      tment': 8125, 'or': 'lUqxPHDlUobgJtoJjZZb', 'air':
+	                                                                                                       'https://smith.biz/', 'grow': Decimal('-82583.2')
+	                                                                                                      , 'focus': 'anthonyross@gray.com'}, {'economic': {
+	                                                                                                      0: datetime.datetime(1978, 8, 29, 13, 16, 29), 1: 
+	                                                                                                      ['VVMvsTxeaIxSBsWsMiVc', 'oxyVMaRSkExVDmPusQHz', D
+	                                                                                                      ecimal('-18263110828637.0')], 2: {0: 'oevans@kenne
+	                                                                                                      dy-martinez.biz', 1: Decimal('11867.912'), 2: ['ZM
+	                                                                                                      UMguXSZQKNVwbqaoEo', 'esAEXdndWGIQaUrGvMpo']}}, 't
+	                                                                                                      rue': {1: 'XNBMDuFXcKCzvFsMSUDd', 2: ['robinsontho
+	                                                                                                      mas@watson.info', 'fBynqswYIVFYtnMuKVbw', 1655], 3
+	                                                                                                      : {1: 'ZtZOolUYPECOQRoRXDaj', 2: Decimal('-7482394
+	                                                                                                      .91679'), 3: [5158, 6115]}}, 'bank': {2: 1733, 3: 
+	                                                                                                      [datetime.datetime(2001, 12, 31, 12, 57, 9), 'NRcl
+	                                                                                                      FuZHbwolHXIRIxMQ', 'http://www.hudson-davis.com/au
+	                                                                                                      thor/'], 4: {2: 'QkeVYhzZEGgHiQFRbpTC', 3: -4.7628
+	                                                                                                      834, 4: ['ZprzBLglLAkUFWlmGjSi', 'oXxWZjLWFDrSGtbJ
+	                                                                                                      bIuQ']}}, 'outside': {3: 'CDFjIgBxKSZlVyAcSlop', 4
+	                                                                                                      : ['poBsNWWtJMLukNIsIdOU', 'kimberly29@york-sharp.
+	                                                                                                      biz', 'PkbucRRprMXAJljgXsDI'], 5: {3: 54742564352.
+	                                                                                                      68, 4: 808435128298390.0, 5: [64084578819.0, 'pkai
+	                                                                                                      ser@hodges.com']}}, 'enter': {4: 'http://carlson.c
+	                                                                                                      om/about/', 5: ['hMkUFUBzndXleWBEVMno', Decimal('6
+	                                                                                                      5497021120.0'), 'PIhEEewPxLmZIDasawjm'], 6: {4: 'h
+	                                                                                                      oAgDXLXfImWzLOgfQQw', 5: 'bPKtJQaMYTTwFfPIvcju', 6
+	                                                                                                      : ['nlopez@roberts.com', 'JxTKRwuxZXDzdSFviyKn']}}
+	                                                                                                      , 'according': {5: 2665, 6: ['EIqnaELgmNKhZLLqYwHZ
+	                                                                                                      ', 'http://www.mcclure.com/', 97353084.0], 7: {5: 
+	                                                                                                      -50366515125809.0, 6: 'ueFsBrzwQLjixIhsCSTx', 7: [
+	                                                                                                      'amandadyer@roberts.org', 64.266926]}}, 'sea': {6:
+	                                                                                                       Decimal('-41.0'), 7: [Decimal('29459063157.727'),
+	                                                                                                       Decimal('40850113.8096186'), Decimal('73609065049
+	                                                                                                      6230.0')], 8: {6: 4441, 7: 'http://www.potter.org/
+	                                                                                                      category/search/explore/homepage.html', 8: [Decima
+	                                                                                                      l('8.39447118726'), 'davismichael@graves.com']}}, 
+	                                                                                                      'worry': {7: 9115, 8: ['hernandezamanda@yahoo.com'
+	                                                                                                      , 'QqVtjwQVDnBnsaaWNmGc', 'https://www.cabrera-ste
+	                                                                                                      wart.com/wp-content/about/'], 9: {7: 'PAdAkscadmdz
+	                                                                                                      HQovzsCe', 8: 1773, 9: ['aRJfrkQpKrrAPJXiKeVt', De
+	                                                                                                      cimal('-3.30246688398')]}}, 'street': {8: 'qbarret
+	                                                                                                      t@hernandez.biz', 9: ['JJgnrVZTQRcbbIpieEQS', 6714
+	                                                                                                      , 8175], 10: {8: 8936, 9: 'xpbbovjSNpNiCsgzhIYY', 
+	                                                                                                      10: ['zZJvxiSAgLXPZcvxdTrc', 'tvffTZLoIphmjbjRnuqQ
+	                                                                                                      ']}}, 'also': {9: 2097, 10: ['hVPAdaJJyrotvFvrlIWj
+	                                                                                                      ', datetime.datetime(2013, 12, 23, 3, 5, 25), 2220
+	                                                                                                      ], 11: {9: 3539, 10: 'geQtaoAyhSKoqnbFoIRq', 11: [
+	                                                                                                      'tycuqfRKzdLtTHmNEsPr', 'cFoicOoSUQlXGSVqtUpf']}}}
+	                                                                                                      )
+	fake.pytuple(nb_elements=10, variable_nb_elements=True, *value_types)                               # (224, -475.9740793956, 'https://hernandez.com/', '
+	                                                                                                      RJGKiaeTzYquHSwzsmVV', datetime.datetime(1985, 10,
+	                                                                                                       11, 23, 5, 40), 907, 5712, 'lLRbgOqiQtsqMMkjCQLu'
+	                                                                                                      , 1976, 48661751.16861, 'UpwptClLvImNmGDKGpMl', 56
+	                                                                                                      92, 'DxpuXKJCbDDermBakNPE')
+
+### faker.providers.ssn
+
+	fake.ein()                                                                                          # 92-1350147
+	fake.invalid_ssn()                                                                                  # 304-34-0000
+	fake.itin()                                                                                         # 913-98-3101
+	fake.ssn(taxpayer_identification_number_type="SSN")                                                 # 174-62-5606
+
+### faker.providers.user_agent
+
+	fake.android_platform_token()                                                                       # Android 2.3.7
+	fake.chrome(version_from=13, version_to=63, build_from=800, build_to=899)                           # Mozilla/5.0 (iPad; CPU iPad OS 3_1_3 like Mac OS X
+	                                                                                                      ) AppleWebKit/535.0 (KHTML, like Gecko) CriOS/56.0
+	                                                                                                      .879.0 Mobile/21B612 Safari/535.0
+	fake.firefox()                                                                                      # Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac 
+	                                                                                                      OS X) AppleWebKit/535.1 (KHTML, like Gecko) FxiOS/
+	                                                                                                      15.5j0281.0 Mobile/14P435 Safari/535.1
+	fake.internet_explorer()                                                                            # Mozilla/5.0 (compatible; MSIE 5.0; Windows NT 6.2;
+	                                                                                                       Trident/4.0)
+	fake.ios_platform_token()                                                                           # iPad; CPU iPad OS 3_1_3 like Mac OS X
+	fake.linux_platform_token()                                                                         # X11; Linux x86_64
+	fake.linux_processor()                                                                              # i686
+	fake.mac_platform_token()                                                                           # Macintosh; U; PPC Mac OS X 10_12_5
+	fake.mac_processor()                                                                                # PPC
+	fake.opera()                                                                                        # Opera/8.66.(X11; Linux i686; ve-ZA) Presto/2.9.180
+	                                                                                                       Version/12.00
+	fake.safari()                                                                                       # Mozilla/5.0 (iPod; U; CPU iPhone OS 4_1 like Mac O
+	                                                                                                      S X; sr-ME) AppleWebKit/534.16.1 (KHTML, like Geck
+	                                                                                                      o) Version/4.0.5 Mobile/8B114 Safari/6534.16.1
+	fake.user_agent()                                                                                   # Mozilla/5.0 (compatible; MSIE 5.0; Windows 95; Tri
+	                                                                                                      dent/3.1)
+	fake.windows_platform_token()                                                                       # Windows NT 6.2
+
+## LANGUAGE fa_IR
+
+### faker.providers.address
+
+	fake.address()                                                                                      # 9791 عبدالمالکی بلوار واحد 378
+	                                                                                                      شهر علیرضا, کردستان 860129
+	fake.building_number()                                                                              # 04796
+	fake.city()                                                                                         # استان اسما
+	fake.city_prefix()                                                                                  # شهرستان
+	fake.city_suffix()                                                                                  # Ville
+	fake.country()                                                                                      # نیجریه
+	fake.country_code(representation="alpha-2")                                                         # HR
+	fake.postcode()                                                                                     # 273
+	fake.secondary_address()                                                                            # سوئیت 646
+	fake.state()                                                                                        # زنجان
+	fake.street_address()                                                                               # 9693 پارسا جاده
+	fake.street_name()                                                                                  # رودگر آزاد راه
+	fake.street_suffix()                                                                                # پل
+
+### faker.providers.automotive
+
+	fake.license_plate()                                                                                # 9ZX13
+
+### faker.providers.bank
+
+	fake.bank_country()                                                                                 # GB
+	fake.bban()                                                                                         # QZGD7715162046610
+	fake.iban()                                                                                         # GB50PTJP8483040119803
+
+### faker.providers.barcode
+
+	fake.ean(length=13)                                                                                 # 6494205552664
+	fake.ean13()                                                                                        # 7869819846345
+	fake.ean8()                                                                                         # 64848501
+
+### faker.providers.color
+
+	fake.color_name()                                                                                   # Plum
+	fake.hex_color()                                                                                    # #fcc9ea
+	fake.rgb_color()                                                                                    # 161,10,192
+	fake.rgb_css_color()                                                                                # rgb(68,30,170)
+	fake.safe_color_name()                                                                              # teal
+	fake.safe_hex_color()                                                                               # #bb4400
+
+### faker.providers.company
+
+	fake.bs()                                                                                           # maximize B2B supply-chains
+	fake.catch_phrase()                                                                                 # Persevering web-enabled adapter
+	fake.company()                                                                                      # گروه محصولات كاغذي
+	fake.company_suffix()                                                                               # Group
+
+### faker.providers.credit_card
+
+	fake.credit_card_expire(start="now", end="+10y", date_format="%m/%y")                               # 11/24
+	fake.credit_card_full(card_type=None)                                                               # Diners Club / Carte Blanche
+	                                                                                                      سوگند تحسینی
+	                                                                                                      30259446109247 04/28
+	                                                                                                      CVC: 343
+	fake.credit_card_number(card_type=None)                                                             # 4119553721535
+	fake.credit_card_provider(card_type=None)                                                           # VISA 16 digit
+	fake.credit_card_security_code(card_type=None)                                                      # 3108
+
+### faker.providers.currency
+
+	fake.cryptocurrency()                                                                               # ('TRX', 'TRON')
+	fake.cryptocurrency_code()                                                                          # MSC
+	fake.cryptocurrency_name()                                                                          # Lisk
+	fake.currency()                                                                                     # ('MOP', 'Macanese pataca')
+	fake.currency_code()                                                                                # TRY
+	fake.currency_name()                                                                                # Hong Kong dollar
+
+### faker.providers.date_time
+
+	fake.am_pm()                                                                                        # AM
+	fake.century()                                                                                      # II
+	fake.date(pattern="%Y-%m-%d", end_datetime=None)                                                    # 2012-02-23
+	fake.date_between(start_date="-30y", end_date="today")                                              # 2001-07-19
+	fake.date_between_dates(date_start=None, date_end=None)                                             # 2019-10-20
+	fake.date_object(end_datetime=None)                                                                 # 1998-09-01
+	fake.date_of_birth(tzinfo=None, minimum_age=0, maximum_age=115)                                     # 1943-07-14
+	fake.date_this_century(before_today=True, after_today=False)                                        # 2017-08-21
+	fake.date_this_decade(before_today=True, after_today=False)                                         # 2014-08-13
+	fake.date_this_month(before_today=True, after_today=False)                                          # 2019-10-12
+	fake.date_this_year(before_today=True, after_today=False)                                           # 2019-05-15
+	fake.date_time(tzinfo=None, end_datetime=None)                                                      # 2013-02-26 14:45:18
+	fake.date_time_ad(tzinfo=None, end_datetime=None, start_datetime=None)                              # 0602-02-25 13:45:19
+	fake.date_time_between(start_date="-30y", end_date="now", tzinfo=None)                              # 2004-01-31 21:31:10
+	fake.date_time_between_dates(datetime_start=None, datetime_end=None, tzinfo=None)                   # 2019-10-20 08:41:17
+	fake.date_time_this_century(before_now=True, after_now=False, tzinfo=None)                          # 2001-03-17 17:29:13
+	fake.date_time_this_decade(before_now=True, after_now=False, tzinfo=None)                           # 2017-01-11 22:38:18
+	fake.date_time_this_month(before_now=True, after_now=False, tzinfo=None)                            # 2019-10-04 18:52:31
+	fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None)                             # 2019-03-19 12:08:13
+	fake.day_of_month()                                                                                 # 26
+	fake.day_of_week()                                                                                  # Wednesday
+	fake.future_date(end_date="+30d", tzinfo=None)                                                      # 2019-11-14
+	fake.future_datetime(end_date="+30d", tzinfo=None)                                                  # 2019-11-10 10:44:43
+	fake.iso8601(tzinfo=None, end_datetime=None)                                                        # 2008-01-12T19:49:55
+	fake.month()                                                                                        # 10
+	fake.month_name()                                                                                   # February
+	fake.past_date(start_date="-30d", tzinfo=None)                                                      # 2019-09-21
+	fake.past_datetime(start_date="-30d", tzinfo=None)                                                  # 2019-10-12 12:44:55
+	fake.time(pattern="%H:%M:%S", end_datetime=None)                                                    # 15:16:06
+	fake.time_delta(end_datetime=None)                                                                  # 0:00:00
+	fake.time_object(end_datetime=None)                                                                 # 17:45:09
+	fake.time_series(start_date="-30d", end_date="now", precision=None, distrib=None, tzinfo=None)      # <generator object Provider.time_series at 0x7f1d1e
+	                                                                                                      7341b0>
+	fake.timezone()                                                                                     # Europe/Dublin
+	fake.unix_time(end_datetime=None, start_datetime=None)                                              # 146174100
+	fake.year()                                                                                         # 2010
+
+### faker.providers.file
+
+	fake.file_extension(category=None)                                                                  # mp4
+	fake.file_name(category=None, extension=None)                                                       # rem.bmp
+	fake.file_path(depth=1, category=None, extension=None)                                              # /inventore/sunt.xls
+	fake.mime_type(category=None)                                                                       # application/postscript
+	fake.unix_device(prefix=None)                                                                       # /dev/sdn
+	fake.unix_partition(prefix=None)                                                                    # /dev/sda8
+
+### faker.providers.geo
+
+	fake.coordinate(center=None, radius=0.001)                                                          # 42.130582
+	fake.latitude()                                                                                     # -75.706720
+	fake.latlng()                                                                                       # (Decimal('74.3264995'), Decimal('-119.018277'))
+	fake.local_latlng(country_code="US", coords_only=False)                                             # ('37.52487', '-77.55777', 'Bon Air', 'US', 'Americ
+	                                                                                                      a/New_York')
+	fake.location_on_land(coords_only=False)                                                            # ('39.96348', '-4.83076', 'Talavera de la Reina', '
+	                                                                                                      ES', 'Europe/Madrid')
+	fake.longitude()                                                                                    # 110.436815
+
+### faker.providers.internet
+
+	fake.ascii_company_email(*args, **kwargs)                                                           # bwlfdlshbyry@mdn.org
+	fake.ascii_email(*args, **kwargs)                                                                   # hwshyrth@yahoo.com
+	fake.ascii_free_email(*args, **kwargs)                                                              # gmhmdy@yahoo.com
+	fake.ascii_safe_email(*args, **kwargs)                                                              # nwrwzymydh@example.ir
+	fake.company_email(*args, **kwargs)                                                                 # nznynmyn@grwh.com
+	fake.domain_name(*args, **kwargs)                                                                   # mjtm.com
+	fake.domain_word(*args, **kwargs)                                                                   # thwl
+	fake.email(*args, **kwargs)                                                                         # abdlly@mailfa.com
+	fake.free_email(*args, **kwargs)                                                                    # lynchngyzy@gmail.com
+	fake.free_email_domain(*args, **kwargs)                                                             # mailfa.com
+	fake.hostname(*args, **kwargs)                                                                      # srv-56.nwrd.org
+	fake.image_url(width=None, height=None)                                                             # https://placekitten.com/778/163
+	fake.ipv4(network=False, address_class=None, private=None)                                          # 203.3.126.59
+	fake.ipv4_network_class()                                                                           # b
+	fake.ipv4_private(network=False, address_class=None)                                                # 172.17.99.218
+	fake.ipv4_public(network=False, address_class=None)                                                 # 174.54.86.156
+	fake.ipv6(network=False)                                                                            # c292:37ff:7f03:ca9e:a0a0:304e:5f56:ed31
+	fake.mac_address()                                                                                  # a1:d7:d6:eb:09:7d
+	fake.safe_email(*args, **kwargs)                                                                    # nwrwzymhmd-mhdy@example.org
+	fake.slug(*args, **kwargs)                                                                          # dolore-consectetur
+	fake.tld()                                                                                          # com
+	fake.uri()                                                                                          # https://grwh.ir/tags/list/posts/faq.php
+	fake.uri_extension()                                                                                # .php
+	fake.uri_page()                                                                                     # home
+	fake.uri_path(deep=None)                                                                            # blog/tag/wp-content
+	fake.url(schemes=None)                                                                              # http://grwh.ir/
+	fake.user_name(*args, **kwargs)                                                                     # myrmhmdsltny
+
+### faker.providers.isbn
+
+	fake.isbn10(separator="-")                                                                          # 0-17-494109-9
+	fake.isbn13(separator="-")                                                                          # 978-1-181-80859-3
+
+### faker.providers.job
+
+	fake.job()                                                                                          # فروشنده
+
+### faker.providers.lorem
+
+	fake.paragraph(nb_sentences=3, variable_nb_sentences=True, ext_word_list=None)                      # Voluptatum officia iste praesentium velit. Facilis
+	                                                                                                       id expedita in assumenda.
+	fake.paragraphs(nb=3, ext_word_list=None)                                                           # ['Voluptate impedit quibusdam cum porro. Perferend
+	                                                                                                      is maxime laborum officia tempore corrupti atque q
+	                                                                                                      uibusdam. Veritatis nesciunt similique consequatur
+	                                                                                                       quibusdam corporis maiores.', 'Veritatis eos prov
+	                                                                                                      ident impedit sequi nesciunt eaque. Esse eaque rem
+	                                                                                                       dicta necessitatibus.', 'Laboriosam sint in possi
+	                                                                                                      mus praesentium dignissimos. Rerum reprehenderit n
+	                                                                                                      am laboriosam quam sequi id quasi.']
+	fake.sentence(nb_words=6, variable_nb_words=True, ext_word_list=None)                               # Iusto dolorem doloremque.
+	fake.sentences(nb=3, ext_word_list=None)                                                            # ['Vero sequi doloribus deleniti.', 'Consequuntur n
+	                                                                                                      umquam perferendis alias ut.', 'Sint et incidunt q
+	                                                                                                      uas.']
+	fake.text(max_nb_chars=200, ext_word_list=None)                                                     # At rerum eos explicabo. Quasi excepturi adipisci e
+	                                                                                                      x fugit aspernatur officia quia.
+	fake.texts(nb_texts=3, max_nb_chars=200, ext_word_list=None)                                        # ['Explicabo quaerat perspiciatis necessitatibus de
+	                                                                                                      lectus officia occaecati. Fuga ullam iste autem. C
+	                                                                                                      onsequuntur ex quam nisi mollitia officia itaque.'
+	                                                                                                      , 'Explicabo ex illo molestiae quo explicabo sed. 
+	                                                                                                      Corrupti nihil placeat natus.\nPraesentium necessi
+	                                                                                                      tatibus pariatur hic. Nihil corporis id deserunt.'
+	                                                                                                      , 'Nobis quas a. Laudantium minima itaque deserunt
+	                                                                                                       minus. Repellat unde veniam.\nEligendi omnis corr
+	                                                                                                      upti iusto at unde ad. Doloremque aspernatur moles
+	                                                                                                      tiae ut eum sit possimus consequatur.']
+	fake.word(ext_word_list=None)                                                                       # iure
+	fake.words(nb=3, ext_word_list=None, unique=False)                                                  # ['quidem', 'illo', 'debitis']
+
+### faker.providers.misc
+
+	fake.binary(length=1048576)                                                                         # b'\x13\x83\xbb\xbd\xe5\xb9\xcdr\x01k\x84\xbdI\xebc
+	                                                                                                      Qk\x0bW\xceV\x0eG8V\xe2\xfb^\x1e\x0b\xce\xe5\xa2\x
+	                                                                                                      d0\x10\x1az\xce\x14\xcb\xfc\rp{0\xc7\xf2aT\xaa;\xb
+	                                                                                                      1?\x1a\x94\x8c\xee\x99\xfa\x7f\x88\x0f\xac\xb0\xa2
+	                                                                                                      /\x1d\xde-\x015\x0f.\tW\x12\xf6\x1b`\xa9f\xf4\xae\
+	                                                                                                      xf5\xb3\x11\xc3\x9c\xc9,\x96^\xd3:\xc7\xab\xceY\xc
+	                                                                                                      5\xb7^\xb9\xd4\xe0u\xe3\xf6\xb0\x89V\xc6\xf9\x15NW
+	                                                                                                      \x0b\xef/1\xa3y\x1c\x18\xe6\xee\xaa\xbd\x00$c\xcc5
+	                                                                                                      \xad\x9f8\xe6)k{\x18NI\x059u\x93jp\xd6\xa3`\xefZ(\
+	                                                                                                      x159\x0c3f\x82+7\xee\xccr7\xf8\xb1\xce\xe48\x95\xe
+	                                                                                                      3\xc2i;\x03\xed\x99\'\xae\xb1b\xf8$\xba\xd8"m\x7f\
+	                                                                                                      xb3\x1f\xabx\xdc\xe0+\x80o\xa5Tio\xed\xd6\xbca\xd1
+	                                                                                                      \xf7\xd0\xf0\x11\x95\t^1\x0eM\x96\x1f\xf1\x14cj\x8
+	                                                                                                      d\xfb\xdd\x13\xb0\xefd\x93I4\xe3\x99\xd2\xe3\'iN\x
+	                                                                                                      f9\x91\xc0\xbeR\xdc\x9f\xed\xf2q\xb8\x93\x92\x0f\x
+	                                                                                                      ed\xbf\xb7\x98|\x05\x07CL\nT\x19\x00h\xee\xb5\xb9\
+	                                                                                                      x11\xfa^z\x06\x8d\xdd\xad\x1a0\xe6\x9f\x86~\xff\xd
+	                                                                                                      6\x85\xad\x16\x0f\xdb\x13T~E\xd3\xacD\x8f\x08V\x17
+	                                                                                                      \x08\xf8\x1e\xeb\xef\xd4\xbdW\x96]%G4\xd0\xb4\xe3\
+	                                                                                                      xe8\x8e\x82\xe7\x90O\xa1G\x13\xd2\xf8v\xea\x8b\x0f
+	                                                                                                      \xa2;\xf9@\x8f\x894\xde&\xbe\x11\xf9\xe5c\x9f\xb1\
+	                                                                                                      \\xc4\xcb\xa1\x19\x8am\x13\xa2\xa2\xc8\x90\x12C\xd
+	                                                                                                      5\x80\xd3(\xfduf(:?\x02\x90#\xdc\x89\xf7\xec\x89\x
+	                                                                                                      94\x18Yx\xf9VIL[\xef\xcb\x04H\xc8\x1b\\Z\x9faBK\x1
+	                                                                                                      8Mm\xc36\xdd\xc7]\r\x8f5C:J\x97@\xc4\xb4\'b\x03\xb
+	                                                                                                      dH\xf4} \xb5\xf85\xa0\xf2\n\xb0\xe2\xd0\xed\x9c\xe
+	                                                                                                      2L\xe9\xc4f\x97[\x99U\xa2\x88gB\x1b\x1d\xd1[:\x07P
+	                                                                                                      >\xce\xbf\x8c/\xed\xe1\xa6Jo\xa5\xe9\xbf\xa2\xb7\x
+	                                                                                                      b0\xae\x92\x98\x8a]?q\xae\x7f\x90\xde\x88\xe7B\xf4
+	                                                                                                      \xabZ\xe2\x1a#\xd5\xd9\x95\x1ey\xc3\xc4l&\xbbm\x1c
+	                                                                                                      \xfc<\xdc\xc7\xb9\x06\x99\xbe\xbd\xcc\xe0\xbe5\xfd
+	                                                                                                      J\xa5p\x00\xbd \x00G)k\xa4\xde\x90d\x0f\x0e\xa0\xe
+	                                                                                                      3\xbam\xe1\xad=\xc1s\xf3G\x9d\x92a<X+\xdc\x0e\xb3\
+	                                                                                                      xc3\x03\xfa^\xf2\x8cG\xc7h\xdd\x98\xdf\x921* \xe2\
+	                                                                                                      xa4!\x04\xa6\xf5\xd80\xa9\xd6s\xa5g\xc8-\x1a\rz+\\
+	                                                                                                      v\xf0\xca\x91\xb0\xe9tg\x98\xafD\xba\xb5\xa1h\xe4\
+	                                                                                                      x1e\xdd\x9fc\xfcn^5\xe9=\xcbl\xa1_\x13\xa7\xff~\xc
+	                                                                                                      4\x1dy\xcd\xbb\xc7rZ\x91\x80\xb0\x86\x1b\xae8jp\x9
+	                                                                                                      b\xe2XV}\xf7kn\xbavY\xc9\xd9Z\x9a\xe2\xbf\x1c(\xea
+	                                                                                                      \xfa\tZ\x89\xd6\xfdq\xc7\xf8\xb1\xcf\xf7[:\xd6\xad
+	                                                                                                      I\xa47\xb2K\x98\xf4M\xe4\xbf\xfc\x15\xb1g/\x9b\x93
+	                                                                                                      \xa5\xd2\x95\x05\xd8\xb3\xd8\xf5\xbd\\\x7f\x97`\xc
+	                                                                                                      58\xa5R\xa3\xf8X\xc9\xeed\xd1\xbb6\x1c\xf6gTU=3<\x
+	                                                                                                      c6\xa1\xcb\x8c!\xf5\x8d\xa0u\x85<l8\xf4\xbe\xdeK\x
+	                                                                                                      86\xbd_\x87fr~\x84\xb1\xaf62E*s\xea\xaa:\xa7HT\x15
+	                                                                                                      \xfb\x89D\xbe\xe1\xdb\xda\xdc\x83\x97\x8b\xc6N\x17
+	                                                                                                      \x10W\xdc\x00lCj\xbe\x83\x16\xb7g<Qo%\xf8\xdb\x93L
+	                                                                                                      ;\xacR\x84F,(F0\x03*\xc8\xe9\xe2\x86Z\x01#\x90\xd4
+	                                                                                                      W\x03\x10\xac\xa7\xb94\x16l\xc6\x05\xe3\xa7r\xe1\x
+	                                                                                                      e7y\x02\xb0nuP\xd4\xc81\xca\xa1:|\x941\x0c\xcf\r\x
+	                                                                                                      adrd\xe8\x87\xc3k\xda\x9d [\xe73\x91K\xe0@\x9dVs\x
+	                                                                                                      bb\x97>%\xff"\xf5~\xd4\n\x05\x0b\xf2\x02\x1d\xf5\x
+	                                                                                                      06\x18\xb0\x97\x9c\xf1\xfb\x99\x9cC\x9e-\xcf\x16:b
+	                                                                                                      y*Q\xc8GT*\x9a\x03\xfd"\xb9\xff+\xd7\xaa\xc8\xde\x
+	                                                                                                      ee\xaf\x0e\xa5\x9c\xf6\x84\xf2\x83i\xb71\x86\xf5\x
+	                                                                                                      d7\xf4g\xac\x1dz\x18\xcd{\xc5\\\xa32[\xe7\x82\xdc\
+	                                                                                                      xd7\xae\xc1\xdc\x14\xba\xc9\xba\xc8\x8bpFtd\x0f\xd
+	                                                                                                      35\xcd\xf4\xf4\xc1\xddf\xf2\xca\x1dR\x0bc1F\xca;>5
+	                                                                                                      m\x96A\xd8\xdeJPn\xd8\xfe\xa1\xe2\x0e\x82\t\xaf\xa
+	                                                                                                      2\xc5m>\x90e+i\xc7|q\xaa'
+	fake.boolean(chance_of_getting_true=50)                                                             # True
+	fake.md5(raw_output=False)                                                                          # efa8ba21fce65c437583fa3e8dd6701c
+	fake.null_boolean()                                                                                 # False
+	fake.password(length=10, special_chars=True, digits=True, upper_case=True, lower_case=True)         # 3^T8Jynvhm
+	fake.sha1(raw_output=False)                                                                         # cd01793a8ba56a46c969a25530ee2fd512d1affb
+	fake.sha256(raw_output=False)                                                                       # d65006d6725bf8dea2da7f68f7dac2645fefa3cb95e79df267
+	                                                                                                      16857424dce597
+	fake.uuid4(cast_to=<class 'str'>)                                                                   # ea065578-3331-49e9-a7bf-5e68375cd1fc
+
+### faker.providers.person
+
+	fake.first_name()                                                                                   # آرش
+	fake.first_name_female()                                                                            # رقيه
+	fake.first_name_male()                                                                              # علی رضا
+	fake.last_name()                                                                                    # منصوری
+	fake.last_name_female()                                                                             # کریمی
+	fake.last_name_male()                                                                               # ولاشجردی
+	fake.name()                                                                                         # علي کریمی
+	fake.name_female()                                                                                  # فاطمه زهرا شبیری
+	fake.name_male()                                                                                    # پارسا معین
+	fake.prefix()                                                                                       # سرکار خانم دکتر
+	fake.prefix_female()                                                                                # سرکار خانم دکتر
+	fake.prefix_male()                                                                                  # جناب آقای
+
+### faker.providers.phone_number
+
+	fake.msisdn()                                                                                       # 9910255923501
+	fake.phone_number()                                                                                 # +98 77 9816 5840
+
+### faker.providers.profile
+
+	fake.profile(fields=None, sex=None)                                                                 # {'job': 'تعمیرکار', 'company': 'سرمايه گذاري صنعت 
+	                                                                                                      بيمه', 'ssn': '449-99-2760', 'residence': '74683 ت
+	                                                                                                      نزیلی چهار راه\nشمال دانیال, خوزستان 70714', 'curr
+	                                                                                                      ent_location': (Decimal('-40.033450'), Decimal('-5
+	                                                                                                      4.537620')), 'blood_group': 'O-', 'website': ['htt
+	                                                                                                      ps://www.bymh.ir/'], 'username': 'zhrjnty', 'name'
+	                                                                                                      : 'فاطمه جلیلی', 'sex': 'F', 'address': '8757 رودگ
+	                                                                                                      ر آزاد راه\nروستای ثنا, مرکزی 131', 'mail': 'mhmdh
+	                                                                                                      synkhbr-pwr@mailfa.com', 'birthdate': datetime.dat
+	                                                                                                      e(2001, 3, 15)}
+	fake.simple_profile(sex=None)                                                                       # {'username': 'aydnmty', 'name': 'آيدا حسنی', 'sex'
+	                                                                                                      : 'F', 'address': '380 سینا پل\nبندر امیرحسین, قم 
+	                                                                                                      441', 'mail': 'bhrmysyn@gmail.com', 'birthdate': d
+	                                                                                                      atetime.date(1956, 11, 8)}
+
+### faker.providers.python
+
+	fake.pybool()                                                                                       # False
+	fake.pydecimal(left_digits=None, right_digits=None, positive=False, min_value=None, max_value=None) # -313299299.4408
+	fake.pydict(nb_elements=10, variable_nb_elements=True, *value_types)                                # {'quisquam': 'fsFsXHxIFGzBzRjOpSdz', 'quod': 78281
+	                                                                                                      1237709.2, 'eos': 'mhmdjwdhmdny@hotmail.com', 'asp
+	                                                                                                      eriores': 'JgtjAfqpFVHOjxDqZymk', 'unde': 'TdQjyqi
+	                                                                                                      sQyABaCJqDDsO', 'quas': 'txIvyubHOeVvsaYPvcJw', 'n
+	                                                                                                      isi': 'ewXWjVsvbmFYmXtKoisM', 'illo': 'inhTYNBQxUN
+	                                                                                                      vntDetfTI', 'vero': 'PnRKHHOirdZqFPLkKuQH', 'inven
+	                                                                                                      tore': 'mTnmUgMAXbTvSXRCWqsM'}
+	fake.pyfloat(left_digits=None, right_digits=None, positive=False, min_value=None, max_value=None)   # -176.7747
+	fake.pyint(min_value=0, max_value=9999, step=1)                                                     # 6304
+	fake.pyiterable(nb_elements=10, variable_nb_elements=True, *value_types)                            # ['SNNeQaDzdvUGqQsUueYd', 'OfCSEsNQEGqvZYaklPki', d
+	                                                                                                      atetime.datetime(1981, 6, 29, 9, 39, 59), 11184011
+	                                                                                                      6.839, 'tUOfedLJSjjJdzIhlzvI', 'http://ptrwshymy.i
+	                                                                                                      r/search/', 7351, 'OTSRCTKCwbemxgYDMUlU', 'hwmnlyr
+	                                                                                                      d@srmyh.net']
+	fake.pylist(nb_elements=10, variable_nb_elements=True, *value_types)                                # [-12494767694813.0, 'qrwhny@hldyng.ir', 7522, 'RfT
+	                                                                                                      EdWqdnboKZGSQLtni', 3345, Decimal('-38.71624'), da
+	                                                                                                      tetime.datetime(1995, 10, 19, 20, 0, 32), 'nJlIYuY
+	                                                                                                      FXBNJkAEyIVPQ', 'KGWaiYtKEuwDZBPpLFMT', 'YFnyfmRKT
+	                                                                                                      iftzKpMEpOd', 3076, Decimal('6.6295482'), 'http://
+	                                                                                                      krtn.ir/category.html']
+	fake.pyset(nb_elements=10, variable_nb_elements=True, *value_types)                                 # {Decimal('-83.440139752'), 'cRoratLUTWamqyyutaxY',
+	                                                                                                       6602, 'CUVjeRseXypypfdfdTmq', 'wAdTmaJqPcldfIKtRR
+	                                                                                                      iX', Decimal('-750.73'), 'HqWmIjLmoqtZtBrDDUfr', 2
+	                                                                                                      558}
+	fake.pystr(min_chars=None, max_chars=20)                                                            # LKnWlxKKYQygzjIcdFam
+	fake.pystruct(count=10, *value_types)                                                               # (['ZEAKTwKPmYgDORAznqku', 856, 'http://www.abdrhn.
+	                                                                                                      net/privacy.html', 4725, 83592.6073161, 9315, date
+	                                                                                                      time.datetime(2010, 2, 24, 10, 15, 46), 'http://ww
+	                                                                                                      w.mshyn.ir/', 'djbjvsKeueFsBrzwQLji', 3022], {'vol
+	                                                                                                      uptatibus': -88758.16, 'iste': Decimal('-382740714
+	                                                                                                      91495.5'), 'reprehenderit': 'yly74@lstyk.com', 'vo
+	                                                                                                      luptas': 'MuKVbwCffRznEQDfyPzM', 'adipisci': 1664,
+	                                                                                                       'et': 2882, 'voluptates': 'NZphNpjFoGPYdiQSLRob',
+	                                                                                                       'iusto': 'PKtJQaMYTTwFfPIvcjuV', 'provident': 604
+	                                                                                                      3, 'explicabo': -87.717}, {'incidunt': {0: datetim
+	                                                                                                      e.datetime(1971, 3, 8, 8, 45, 59), 1: ['wPXLiAmrwY
+	                                                                                                      uaRCoXiRaM', 'OFdavJByeNHAbEDQEFHH', datetime.date
+	                                                                                                      time(2003, 11, 21, 3, 4, 18)], 2: {0: 5602, 1: 're
+	                                                                                                      QnBqEbChXexpzApsol', 2: ['csydy@rwm.com', 9793]}},
+	                                                                                                       'distinctio': {1: 'http://tmyn.com/index.asp', 2:
+	                                                                                                       [6533, 'XKaaxqHRwfEgQjgFLEjj', 7988], 3: {1: 'kCE
+	                                                                                                      sSSJBKkPgUGojFyKf', 2: 'http://twlydy.net/post.htm
+	                                                                                                      ', 3: ['nQgeStBELqOaSqGpMtFq', 'http://grwh.com/ca
+	                                                                                                      tegories/terms/']}}, 'fugiat': {2: 'tbxRXIKcfzyGrF
+	                                                                                                      gFGsWJ', 3: [8454, Decimal('10821401534185.0'), 'h
+	                                                                                                      syn04@yahoo.com'], 4: {2: 'GvMpomLxisDtERHPpTWB', 
+	                                                                                                      3: 'eNTLACgFZkFSHsmMWTuM', 4: [datetime.datetime(1
+	                                                                                                      995, 7, 19, 3, 10, 53), 'lyNttROrfBynqswYIVFY']}},
+	                                                                                                       'asperiores': {3: Decimal('25291635.0'), 4: [Deci
+	                                                                                                      mal('-7482394.91679'), 5158, 6115], 5: {3: 'myr-ly
+	                                                                                                      nmty@chmail.ir', 4: 'jMqKRQcJPKSQFTCfoWry', 5: ['h
+	                                                                                                      ttps://www.drwszy.com/app/main/', 6513]}}, 'quae':
+	                                                                                                       {4: Decimal('-38662143606789.8'), 5: ['http://www
+	                                                                                                      .grdbf.org/home/', 2103, 'QkeVYhzZEGgHiQFRbpTC'], 
+	                                                                                                      6: {4: -4.7628834, 5: 'ZprzBLglLAkUFWlmGjSi', 6: [
+	                                                                                                      'oXxWZjLWFDrSGtbJbIuQ', 'ihseWjmZfRckZxKpFcmI']}},
+	                                                                                                       'voluptatum': {5: 'uwLABpiNlXWWkEjvrpbk', 6: [Dec
+	                                                                                                      imal('-52808436472291.8'), Decimal('-710384184427.
+	                                                                                                      3'), 'KicpnVyUfZlGrSLHpPkb'], 7: {5: -4.6022977800
+	                                                                                                      438, 6: 'wtnJHnizKIHUNwMIritL', 7: [datetime.datet
+	                                                                                                      ime(1990, 9, 9, 10, 31, 30), 64084578819.0]}}, 'ad
+	                                                                                                      ': {6: 1759, 7: ['https://dhwb.net/posts/search/ma
+	                                                                                                      in.htm', 'FeuLnhMkUFUBzndXleWB', 4755], 8: {6: 'oI
+	                                                                                                      JlmAdPIhEEewPxLmZI', 7: 181, 8: ['dqfhWTtDkEkKdQvL
+	                                                                                                      Cdhm', -7633461785944.0]}}, 'molestiae': {7: -7864
+	                                                                                                      86.9110224, 8: ['http://www.shrkht.ir/register.htm
+	                                                                                                      ', 'SFviyKnnAzadtKtamkNl', 'mhmd-pwrnyysh@shymy.ir
+	                                                                                                      '], 9: {7: Decimal('-541472503.0'), 8: 2665, 9: ['
+	                                                                                                      EIqnaELgmNKhZLLqYwHZ', 'http://www.khshtrgh.ir/']}
+	                                                                                                      }, 'veniam': {8: 12309308800.47, 9: [72000910.4559
+	                                                                                                      , 'http://www.twlydy.ir/app/tag/main/', 'OMvbNnfNV
+	                                                                                                      nCUBsibUQjH'], 10: {8: 'MtKBeDIcboLYxSKoxRzA', 9: 
+	                                                                                                      Decimal('532.89836'), 10: [4441, 'http://www.ptrws
+	                                                                                                      hymy.ir/category/category/tag/homepage.html']}}, '
+	                                                                                                      et': {9: 'cYavAZsmothUAMoIVlXo', 10: [Decimal('855
+	                                                                                                      8545.6635075'), 9115, 'bhmnyrfn@mailfa.com'], 11: 
+	                                                                                                      {9: 'QqVtjwQVDnBnsaaWNmGc', 10: 'https://www.bnkh.
+	                                                                                                      ir/explore/app/main/', 11: [Decimal('-8217.2'), 'A
+	                                                                                                      kscadmdzHQovzsCeBPQ']}}})
+	fake.pytuple(nb_elements=10, variable_nb_elements=True, *value_types)                               # (Decimal('63.3557'), Decimal('883.726'), datetime.
+	                                                                                                      datetime(2017, 7, 21, 13, 31, 55), 'XGJgVpkvOqyFmg
+	                                                                                                      vLJlIR', datetime.datetime(2009, 6, 27, 9, 9, 25),
+	                                                                                                       'ivgxVHYWZyWIQNhOXGfJ')
+
+### faker.providers.ssn
+
+	fake.ein()                                                                                          # 82-1237585
+	fake.invalid_ssn()                                                                                  # 050-02-0000
+	fake.itin()                                                                                         # 922-85-0500
+	fake.ssn(taxpayer_identification_number_type="SSN")                                                 # 863-38-2543
+
+### faker.providers.user_agent
+
+	fake.android_platform_token()                                                                       # Android 6.0
+	fake.chrome(version_from=13, version_to=63, build_from=800, build_to=899)                           # Mozilla/5.0 (Windows NT 6.0) AppleWebKit/534.2 (KH
+	                                                                                                      TML, like Gecko) Chrome/50.0.838.0 Safari/534.2
+	fake.firefox()                                                                                      # Mozilla/5.0 (Windows 98; gd-GB; rv:1.9.2.20) Gecko
+	                                                                                                      /2018-04-23 02:57:55 Firefox/3.8
+	fake.internet_explorer()                                                                            # Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 4.0;
+	                                                                                                       Trident/4.1)
+	fake.ios_platform_token()                                                                           # iPad; CPU iPad OS 10_3_4 like Mac OS X
+	fake.linux_platform_token()                                                                         # X11; Linux i686
+	fake.linux_processor()                                                                              # i686
+	fake.mac_platform_token()                                                                           # Macintosh; PPC Mac OS X 10_9_2
+	fake.mac_processor()                                                                                # U; Intel
+	fake.opera()                                                                                        # Opera/8.11.(Windows NT 5.01; be-BY) Presto/2.9.161
+	                                                                                                       Version/10.00
+	fake.safari()                                                                                       # Mozilla/5.0 (iPod; U; CPU iPhone OS 3_3 like Mac O
+	                                                                                                      S X; mni-IN) AppleWebKit/532.17.5 (KHTML, like Gec
+	                                                                                                      ko) Version/4.0.5 Mobile/8B117 Safari/6532.17.5
+	fake.user_agent()                                                                                   # Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 4.0;
+	                                                                                                       Trident/5.0)
+	fake.windows_platform_token()                                                                       # Windows NT 6.2
+
+## LANGUAGE lt_LT
