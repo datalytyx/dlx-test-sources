@@ -59,8 +59,15 @@ CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docke
 
 
 SOURCE=jaffle
+### NOTE : extra mount point to put csv files in a place mysql can read from without needing insecure mode
+DB_VERSION=5.5 && PORT=4400
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d -v $(pwd)/$SOURCE:/var/lib/mysql-files/ $IMAGE_NAME
+DB_VERSION=5.6 && PORT=4401
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d -v $(pwd)/$SOURCE:/var/lib/mysql-files/ $IMAGE_NAME
 DB_VERSION=5.7 && PORT=4402
-CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d -v $(pwd)/$SOURCE:/var/lib/mysql-files/ $IMAGE_NAME
+DB_VERSION=8.0 && PORT=4403
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d -v $(pwd)/$SOURCE:/var/lib/mysql-files/ $IMAGE_NAME
 
 
 SOURCE=adventureworks

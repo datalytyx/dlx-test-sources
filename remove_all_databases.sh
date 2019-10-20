@@ -21,3 +21,7 @@ docker rm -f postgres9.6-adventureworks
 docker rm -f postgres9.6-sakila
 docker rm -f mssql2017-adventureworks
 docker rm -f mssql2019-adventureworks
+docker rm -f mysql8.0-jaffle
+docker rm -f mysql5.7-jaffle
+docker rm -f mysql5.6-jaffle
+docker rm -f mysql5.5-jaffle
