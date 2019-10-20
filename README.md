@@ -2,12 +2,12 @@
 
 The code in the repository was designed to create a large number of test databases spanning a wide range of use cases, databases and version numbers to test various ingestion capabilities including full, incremental and log based replication. Below are a list of all of the different databases currently supported and which databases are on them. Note due to minor differences in DB engines, the same database is NOT guarenteed to be the same across different databases or database versions. The number in parentheses is the port number that instance will be listening on. 
 
-| database_engine | version  | adventureworks | sakila   | world_x | siemens-test-db | 
-| -------- | -------- | --------       | -------- |-------- |--------         |
-| mysql | 5.5 | Y (4000) | N | Y (4200) | Y (4301) |
-| mysql | 5.6 | Y (4001) | Y (4101) | Y (4201) | Y (4302) |
-| mysql | 5.7 | Y (4002) | Y (4102) | Y (4202) | Y (4303) |
-| mysql | 8.0 | Y (4003) | Y (4103) | Y (4203) | Y (4203) |
+| database_engine | version  | adventureworks | sakila   | world_x | siemens-test-db | jaffle |
+| -------- | -------- | --------       | -------- |-------- |--------         |--------         |
+| mysql | 5.5 | Y (4000) | N | Y (4200) | Y (4300) | Y (4400) |
+| mysql | 5.6 | Y (4001) | Y (4101) | Y (4201) | Y (4302) | Y (4401) |
+| mysql | 5.7 | Y (4002) | Y (4102) | Y (4202) | Y (4303) | Y (4401) |
+| mysql | 8.0 | Y (4003) | Y (4103) | Y (4203) | Y (4203) | Y (4401) |
 | mariadb | 10.1 | Y (5000) | N | N | N | N |
 | mariadb | 10.2 | Y (5001) | N | N | N | N |
 | mariadb | 10.3 | Y (5002) | N | N | N | N |
