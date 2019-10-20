@@ -58,6 +58,9 @@ DB_VERSION=8.0 && PORT=4303
 CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
 
 
+SOURCE=jaffle
+DB_VERSION=5.7 && PORT=4402
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
 
 
 SOURCE=adventureworks
