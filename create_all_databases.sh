@@ -14,9 +14,47 @@ CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docke
 DB_VERSION=8.0 && PORT=4003
 CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
 
+# Mariadb containers before 10.4 don't appear to have the automated schema load hooks in their entrypoint
+DB_VERSION=10.1 && PORT=5000 
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=10.2 && PORT=5001 
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=10.3 && PORT=5002 
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=10.4 && PORT=5003
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+SOURCE=hopper
+DB_VERSION=5.5 && PORT=4500 
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=5.6 && PORT=4501
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=5.7 && PORT=4502
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=8.0 && PORT=4503
+CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+# Mariadb containers before 10.4 don't appear to have the automated schema load hooks in their entrypoint
+DB_VERSION=10.1 && PORT=5500 
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=10.2 && PORT=5501 
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=10.3 && PORT=5502 
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
+
+DB_VERSION=10.4 && PORT=5503
+CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
 
 SOURCE=sakila
-# 5.5 does not supprt FULL TEST INDEXES
+# 5.5 does not supprt FULL TEXT INDEXES
 #DB_VERSION=5.5 && PORT=4100
 #CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
 
@@ -70,19 +108,6 @@ DB_VERSION=8.0 && PORT=4403
 CONTAINER_NAME=mysql$DB_VERSION-$SOURCE && IMAGE_NAME=mysql:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d -v $(pwd)/$SOURCE:/var/lib/mysql-files/ $IMAGE_NAME
 
 
-SOURCE=adventureworks
-# Mariadb containers before 10.4 don't appear to have the automated schema load hooks in their entrypoint
-DB_VERSION=10.1 && PORT=5000 
-CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
-
-DB_VERSION=10.2 && PORT=5001 
-CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
-
-DB_VERSION=10.3 && PORT=5002 
-CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
-
-DB_VERSION=10.4 && PORT=5003
-CONTAINER_NAME=mariadb$DB_VERSION-$SOURCE && IMAGE_NAME=mariadb:$DB_VERSION && docker run -d  --name $CONTAINER_NAME -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=$SOURCE -p $PORT:3306 -v $(pwd)/$SOURCE:/docker-entrypoint-initdb.d $IMAGE_NAME
 
 
 cd ..

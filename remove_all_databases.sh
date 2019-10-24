@@ -3,6 +3,10 @@ docker rm -f mysql5.7-adventureworks
 docker rm -f mysql5.6-adventureworks
 docker rm -f mysql5.5-adventureworks
 docker rm -f mysql8.0-adventureworks
+docker rm -f mysql5.7-hopper
+docker rm -f mysql5.6-hopper
+docker rm -f mysql5.5-hopper
+docker rm -f mysql8.0-hopper
 docker rm -f mysql5.7-sakila
 docker rm -f mysql5.6-sakila
 docker rm -f mysql5.5-sakila
@@ -17,6 +21,10 @@ docker rm -f mariadb10.1-adventureworks
 docker rm -f mariadb10.2-adventureworks
 docker rm -f mariadb10.3-adventureworks
 docker rm -f mariadb10.4-adventureworks
+docker rm -f mariadb10.1-hopper
+docker rm -f mariadb10.2-hopper
+docker rm -f mariadb10.3-hopper
+docker rm -f mariadb10.4-hopper
 docker rm -f postgres9.6-adventureworks
 docker rm -f postgres9.6-sakila
 docker rm -f mssql2017-adventureworks
