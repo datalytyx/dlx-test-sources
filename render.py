@@ -1,0 +1,41 @@
+import tempfile
+import shutil
+import os
+import csv
+from jinja2 import Template
+import re
+import argparse
+
+parser = argparse.ArgumentParser(description='AdventureWorks Incremental Data Generator')
+parser.add_argument('--source', metavar='config csv file', required=True, help='csv file in the format source_db_engine,db_version,source,port with a header row ')
+parser.add_argument('--action', metavar='template', required=True, help='template file defining action')
+parser.add_argument('--regex', metavar='regex string',help='regex to apply to source (NOT YET IMPLEMENTED)')
+
+args = parser.parse_args()
+
+template = Template(open(args.action, 'r').read())
+
+reader = csv.reader(open(args.source, 'r'))
+next(reader, None) # ingore the header row
+
+sources = []
+for row in reader:
+    source_element={}
+    source_element['source_db_engine']=row[0]
+    source_element['source_db_version']=row[1]
+    source_element['source_data']=row[2]
+    source_element['port']=row[3]
+    sources.append(source_element)   
+
+
+rendered_tap = template.render(sources=sources)
+print(rendered_tap)
+
+#for element in sources:
+#    print(dict(element))
+
+
+#variables = {**agent, **connection}
+
+#print(variables)
+

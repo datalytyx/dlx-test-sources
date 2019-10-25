@@ -1,0 +1,5 @@
+{% for source in sources -%}
+
+docker run -d  --name {{source['source_db_engine']}}{{source['source_db_version']}}-{{source['source_data']}} -e MYSQL_USER=datalytyx -e MYSQL_PASSWORD=horsewelltree -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE={{source['source_data']}} -p {{source['port']}}:3306 -v $(pwd)/{{source['source_data']}}:/docker-entrypoint-initdb.d -v $(pwd)/{{source['source_data']}}:/var/lib/mysql-files/ {{source['source_db_engine']}}:{{source['source_db_version']}}
+{% endfor %}
+
