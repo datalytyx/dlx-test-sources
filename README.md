@@ -4,8 +4,8 @@ The code in the repository was designed to create a large number of test databas
 
 | database_engine | version  | adventureworks | sakila   | world_x | siemens-test-db | jaffle |  hopper |
 | -------- | -------- | --------       | -------- |-------- |--------         |-------- |-------- |
-| mysql | 5.5 | Y (4000) | N | Y (4200) | Y (4300) | N (just needs config tweak) | Y (4500) |
-| mysql | 5.6 | Y (4001) | Y (4101) | Y (4201) | Y (4301) | Y (4401) |Y (4501) |
+| mysql | 5.5 | Y (4000) | N | Y (4200) | N | N (just needs config tweak) | Y (4500) |
+| mysql | 5.6 | Y (4001) | Y (4101) | N | Y (4301) | Y (4401) |Y (4501) |
 | mysql | 5.7 | Y (4002) | Y (4102) | Y (4202) | Y (4302) | Y (4402) |Y (4502) |
 | mysql | 8.0 | Y (4003) | Y (4103) | Y (4203) | Y (4203) | N (just needs config tweak) |Y (4503) |
 | mariadb | 10.1 | Y (5000) | N | N | N | N |
