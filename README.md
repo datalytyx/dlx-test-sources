@@ -4,7 +4,7 @@ The code in the repository was designed to create a large number of test databas
 
 | database_engine | version  | adventureworks | sakila   | world_x | siemens-test-db | jaffle |  hopper |
 | -------- | -------- | --------       | -------- |-------- |--------         |-------- |-------- |
-| mysql | 5.5 | Y (4000) | N | Y (4200) | N | N (just needs config tweak) | Y (4500) |
+| mysql | 5.5 | Y (4000) | N | N | N | N (just needs config tweak) | Y (4500) |
 | mysql | 5.6 | Y (4001) | Y (4101) | N | Y (4301) | Y (4401) |Y (4501) |
 | mysql | 5.7 | Y (4002) | Y (4102) | Y (4202) | Y (4302) | Y (4402) |Y (4502) |
 | mysql | 8.0 | Y (4003) | Y (4103) | Y (4203) | Y (4203) | N (just needs config tweak) |Y (4503) |
@@ -17,34 +17,44 @@ The code in the repository was designed to create a large number of test databas
 | MS SQL Server (Linux) | 2019 | Y (7001) | N | N | N | N |
 
 
+When adding, do NOT use - or . in datasource names in sources.csv
+
 # Installation/envrionment
 This has ONLY been tested running on an Ubuntu 18.04 and a recent version of docker. Further setup is required for incremental loads (see below).
 
-To create ALL the databases in the table above simply run:
+To create, test and delete all the databases, a number of helper functions are required.
 
-```
-./create_all_databases.sh
-```
+```render.py``` is a python script that takes csv source and an action template and produces bash commands to execute. For example:
 
-Or just run individual commands/sections from this script. NOTE: the execution is VERY sensitive to being in the right folder. If you are not, everything will probably run fine but you'll end up with an empty database. If you find data not loading it's very likely this is the cause.
+To create all data sources
 
-Most of these have been able to be achieved without creating specific docker images for each one, rather official docker images are used and data/scripts are injected. However the mssql ones require custom docker images to be built (done by the script). Note that these use mssql-linux and no warranties are made about it's compatibility with mssql on Windows. https://www.dbbest.com/blog/running-sql-server-on-linux/ has a good summary of what is not supported on the linux version.
+```python3 render.py --source source.csv --action create | bash```
 
-The (currently incomplete) script
+NOTE: the create execution is VERY sensitive to being in the right folder. If you are not, everything will probably run fine but you'll end up with an empty database. If you find data not loading it's very likely this is the cause.
 
-```
-./show_summary_add_databases.sh
-```
+To create all list sources
 
-Is intended to run a command against each instance to confirm that data has been loaded correctly. For all the mysql based databases this is a query against the information schema. Note that row counts in here are estimates only - it will look like some data has not completely loaded but usually this is just bad estimation. If you are in any doubt check with a proper ```select count(*) ```.
+```python3 render.py --source source.csv --action list | bash```
 
-The script:
+To delete all sources:
 
-```
-./remove_all_databases.sh
-```
+```python3 render.py --source source.csv --action remove | bash```
 
-Should remove all the created databases.
+To show the number of rows (approximate in the case of many databases) in the first 10 tables:
+
+```python3 render.py --source source.csv --action show_tables | bash```
+
+For all the mysql based databases this row count is a query against the information schema. Note that row counts in here are estimates only - it will look like some data has not completely loaded but usually this is just bad estimation. If you are in any doubt check with a proper ```select count(*) ```.
+
+Subsets of these commands can be made with simple use of grep. For example just to create all sources using ```adventureworks```:
+
+```python3 render.py --source source.csv --action create | grep adventureworks | bash```
+
+To remove all sources using MySQL 5.7:
+
+```python3 render.py --source source.csv --action remove | grep mysql5.7 | bash```
+
+
 
 # Setting up incremental loads
 To test various key and log based incremental replications, it is necessary to continuously add in new rows of data. A data generator has been created that can create up to 100 new rows per second (perhaps more on a higher spec machine). Currently it only adds new rows to the ```salesorderheader``` table in the ```adventureworks```  database. It currently only works with the following databases:
