@@ -27,20 +27,27 @@ To create, test and delete all the databases, a number of helper functions are r
 ```render.py``` is a python script that takes csv source and an action template and produces bash commands to execute. For example:
 
 To create all data sources
+
 ```python3 render.py --source source.csv --action create | bash```
 
 NOTE: the create execution is VERY sensitive to being in the right folder. If you are not, everything will probably run fine but you'll end up with an empty database. If you find data not loading it's very likely this is the cause.
 
 To create all list sources
+
 ```python3 render.py --source source.csv --action list | bash```
 
 To delete all sources:
+
 ```python3 render.py --source source.csv --action remove | bash```
 
 To show the number of rows (approximate in the case of many databases) in the first 10 tables:
+
 ```python3 render.py --source source.csv --action show_tables | bash```
 
+For all the mysql based databases this row count is a query against the information schema. Note that row counts in here are estimates only - it will look like some data has not completely loaded but usually this is just bad estimation. If you are in any doubt check with a proper ```select count(*) ```.
+
 Subsets of these commands can be made with simple use of grep. For example just to create all sources using ```adventureworks```:
+
 ```python3 render.py --source source.csv --action create | grep adventureworks | bash```
 
 To remove all sources using MySQL 5.7:
@@ -48,27 +55,6 @@ To remove all sources using MySQL 5.7:
 ```python3 render.py --source source.csv --action remove | grep mysql5.7 | bash```
 
 
-
-
-
-
-Most of these have been able to be achieved without creating specific docker images for each one, rather official docker images are used and data/scripts are injected. However the mssql ones require custom docker images to be built (done by the script). Note that these use mssql-linux and no warranties are made about it's compatibility with mssql on Windows. https://www.dbbest.com/blog/running-sql-server-on-linux/ has a good summary of what is not supported on the linux version.
-
-The (currently incomplete) script
-
-```
-./show_summary_add_databases.sh
-```
-
-Is intended to run a command against each instance to confirm that data has been loaded correctly. For all the mysql based databases this is a query against the information schema. Note that row counts in here are estimates only - it will look like some data has not completely loaded but usually this is just bad estimation. If you are in any doubt check with a proper ```select count(*) ```.
-
-The script:
-
-```
-./remove_all_databases.sh
-```
-
-Should remove all the created databases.
 
 # Setting up incremental loads
 To test various key and log based incremental replications, it is necessary to continuously add in new rows of data. A data generator has been created that can create up to 100 new rows per second (perhaps more on a higher spec machine). Currently it only adds new rows to the ```salesorderheader``` table in the ```adventureworks```  database. It currently only works with the following databases:
