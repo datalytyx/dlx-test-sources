@@ -17,16 +17,40 @@ The code in the repository was designed to create a large number of test databas
 | MS SQL Server (Linux) | 2019 | Y (7001) | N | N | N | N |
 
 
+When adding, do NOT use - or . in datasource names in sources.csv
+
 # Installation/envrionment
 This has ONLY been tested running on an Ubuntu 18.04 and a recent version of docker. Further setup is required for incremental loads (see below).
 
-To create ALL the databases in the table above simply run:
+To create, test and delete all the databases, a number of helper functions are required.
 
-```
-./create_all_databases.sh
-```
+```render.py``` is a python script that takes csv source and an action template and produces bash commands to execute. For example:
 
-Or just run individual commands/sections from this script. NOTE: the execution is VERY sensitive to being in the right folder. If you are not, everything will probably run fine but you'll end up with an empty database. If you find data not loading it's very likely this is the cause.
+To create all data sources
+```python3 render.py --source source.csv --action create | bash```
+
+NOTE: the create execution is VERY sensitive to being in the right folder. If you are not, everything will probably run fine but you'll end up with an empty database. If you find data not loading it's very likely this is the cause.
+
+To create all list sources
+```python3 render.py --source source.csv --action list | bash```
+
+To delete all sources:
+```python3 render.py --source source.csv --action remove | bash```
+
+To show the number of rows (approximate in the case of many databases) in the first 10 tables:
+```python3 render.py --source source.csv --action show_tables | bash```
+
+Subsets of these commands can be made with simple use of grep. For example just to create all sources using ```adventureworks```:
+```python3 render.py --source source.csv --action create | grep adventureworks | bash```
+
+To remove all sources using MySQL 5.7:
+
+```python3 render.py --source source.csv --action remove | grep mysql5.7 | bash```
+
+
+
+
+
 
 Most of these have been able to be achieved without creating specific docker images for each one, rather official docker images are used and data/scripts are injected. However the mssql ones require custom docker images to be built (done by the script). Note that these use mssql-linux and no warranties are made about it's compatibility with mssql on Windows. https://www.dbbest.com/blog/running-sql-server-on-linux/ has a good summary of what is not supported on the linux version.
 
