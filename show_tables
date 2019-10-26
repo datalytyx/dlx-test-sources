@@ -2,6 +2,6 @@
 {% for source in sources -%}
 echo "=========================================================================================="
 echo "Database Engine: {{source['source_db_engine']}} Database Version: {{source['source_db_version']}}       Source Data Version: {{source['source_data']}}  Listen Port: {{source['port']}}"
-mysql --table --host 127.0.0.1 --port {{source['port']}} --user=datalytyx --password=horsewelltree -e "SELECT table_name, table_rows,table_schema FROM INFORMATION_SCHEMA.TABLES where table_schema not in  ('information_schema','sys','performance_schema','mysql');" 2>&1 | grep -v "Using a password on the command" | head -10
+mysql --table --host 127.0.0.1 --port {{source['port']}} --user=datalytyx --password=horsewelltree -e "SELECT table_name, table_rows,table_schema FROM INFORMATION_SCHEMA.TABLES where table_schema not in  ('information_schema','sys','performance_schema','mysql');" 2>&1 | grep -v "Using a password on the command" | head -10   # {{source['source_data']}}
 {% endfor %}
 
