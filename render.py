@@ -23,19 +23,13 @@ for row in reader:
     source_element={}
     source_element['source_db_engine']=row[0]
     source_element['source_db_version']=row[1]
-    source_element['source_data']=row[2]
-    source_element['port']=row[3]
+    source_element['source_path']=row[2]
+    source_element['source_data']=row[3]
+    source_element['port']=row[4]
+    source_element['source_db_version_raw']=source_element['source_db_version'].replace('.','')
     sources.append(source_element)   
 
 
 rendered_tap = template.render(sources=sources)
 print(rendered_tap)
-
-#for element in sources:
-#    print(dict(element))
-
-
-#variables = {**agent, **connection}
-
-#print(variables)
 
