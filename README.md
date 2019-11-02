@@ -70,6 +70,7 @@ To test various key and log based incremental replications, it is necessary to c
 The load scripts current run from the host, not inside a container. To prepare your system for them ensure you are running python3 and then:
 
 ```
+sudo apt install -y python3-pip
 pip3 install Faker mysql-connector-python
 ```
 
