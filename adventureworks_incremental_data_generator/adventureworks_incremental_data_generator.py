@@ -6,6 +6,7 @@ import sys
 import time
 import argparse
 import random
+import pymssql
 
 parser = argparse.ArgumentParser(description='AdventureWorks Incremental Data Generator')
 parser.add_argument('--host', metavar='host', help='mysql ip address')
@@ -13,15 +14,23 @@ parser.add_argument('--port', metavar='N',    help='mysql port')
 parser.add_argument('--database', metavar='N',help='mysql database')
 parser.add_argument('--username', metavar='N',help='mysql username')
 parser.add_argument('--password', metavar='N',help='mysql password')
+parser.add_argument('--type', metavar='N',help='mysql|mssql')
 parser.add_argument('--sleep', type=float, metavar='N', default=0, help='sleep seconds between row inserts')
 
 args = parser.parse_args()
 
 
 try:
-    connection = mysql.connector.connect(host=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
-    #connection = mysql.connector.connect(host='172.17.0.1',port='4001',database='adventureworks',user='datalytyx',password='horsewelltree')
-    cursor = connection.cursor()
+    if (args.type == 'mysql'): 
+      connection = mysql.connector.connect(host=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
+      cursor = connection.cursor()
+    elif (args.type == 'mssql'):
+      print("hello")
+      connection = pymssql.connect(server=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
+      cursor = connection.cursor()
+    else:
+      print("--type not set to either mysql or mssql")
+      exit()
     query="select max(SalesOrderID) from salesorderheader"
     cursor.execute(query)
     MaxSalesOrderID=cursor.fetchone()[0]
