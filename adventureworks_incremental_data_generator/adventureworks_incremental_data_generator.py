@@ -25,8 +25,8 @@ try:
       connection = mysql.connector.connect(host=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
       cursor = connection.cursor()
     elif (args.type == 'mssql'):
-      print("hello")
-      connection = pymssql.connect(server=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
+      #connection = pymssql.connect(server=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
+      connection = pymssql.connect(args.host,args.username,args.password,args.database)
       cursor = connection.cursor()
     else:
       print("--type not set to either mysql or mssql")
@@ -36,10 +36,13 @@ try:
     MaxSalesOrderID=cursor.fetchone()[0]
     #print("max SaleOrderID=",MaxSalesOrderID)
 
+    print("Getting CustomerIDs")
     cursor.execute("select distinct(CustomerID) from salesorderheader where CustomerID is not null order by 1")
     CustomerIDs=cursor.fetchall()
+    print("Getting Status")
     cursor.execute("select distinct(Status) from salesorderheader where Status is not null order by 1")
     Statuss=cursor.fetchall()
+    print("Getting OnlineOrderFlag")
     cursor.execute("select distinct(OnlineOrderFlag) from salesorderheader where OnlineOrderFlag is not null order by 1")
     OnlineOrderFlags=cursor.fetchall()
     cursor.execute("select distinct(AccountNumber) from salesorderheader where AccountNumber is not null order by 1")
