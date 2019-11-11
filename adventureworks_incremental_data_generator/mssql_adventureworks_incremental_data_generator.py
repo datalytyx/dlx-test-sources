@@ -13,6 +13,7 @@ parser.add_argument('--password', metavar='N', help='mssql password')
 parser.add_argument('--type', metavar='N', help='mysql|mssql')
 parser.add_argument('--sleep', type=float, metavar='N', default=0, help='sleep seconds between row inserts')
 parser.add_argument('--schema', type=str, metavar='N', help='mssql schema name')
+parser.add_argument('--removeidsabove', type=str, metavar='N', help='Delete all rows with a SalesOrderId over this value')
 
 args = parser.parse_args()
 SCHEMA = ''
@@ -20,8 +21,9 @@ SCHEMA = ''
 try:
     if (args.type == 'mysql'):
         pass
-      # connection = mysql.connector.connect(host=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
-      # cursor = connection.cursor()
+        SCHEMA = ""
+        connection = mysql.connector.connect(host=args.host,port=args.port,database=args.database,user=args.username,password=args.password)
+        cursor = connection.cursor()
     elif (args.type == 'mssql'):
         connection = pymssql.connect(server=args.host, user=args.username, password=args.password, database=args.database, port=args.port)
         cursor = connection.cursor()
@@ -29,9 +31,17 @@ try:
     else:
       print("--type not set to either mysql or mssql")
       exit()
+    if (args.removeidsabove):
+      query=f"delete from {SCHEMA}salesorderheader where SalesOrderId > "+args.removeidsabove
+      print("Truncating salesorderheader using: "+query)
+      cursor.execute(query)
+      connection.commit()
+
+
     query=f"select max(SalesOrderID) from {SCHEMA}salesorderheader"
     cursor.execute(query)
     MaxSalesOrderID=cursor.fetchone()[0]
+    print("Found max(SalesOrderID): "+str(MaxSalesOrderID))
 
     print("Getting CustomerIDs")
     cursor.execute(f"select distinct(CustomerID) from {SCHEMA}salesorderheader where CustomerID is not null order by 1")
