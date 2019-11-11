@@ -71,7 +71,7 @@ The load scripts current run from the host, not inside a container. To prepare y
 
 ```
 sudo apt install -y python3-pip
-pip3 install Faker mysql-connector-python
+pip3 install Faker mysql-connector-python pymssql
 ```
 
 
