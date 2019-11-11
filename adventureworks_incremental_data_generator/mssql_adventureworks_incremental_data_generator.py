@@ -38,7 +38,12 @@ try:
       connection.commit()
 
 
+    query=f"SET IDENTITY_INSERT {SCHEMA}salesorderheader ON"
+    print("Enabling with: "+query)
+    cursor.execute(query)
+
     query=f"select max(SalesOrderID) from {SCHEMA}salesorderheader"
+    print("Getting MaxSalesorderID using: "+query)
     cursor.execute(query)
     MaxSalesOrderID=cursor.fetchone()[0]
     print("Found max(SalesOrderID): "+str(MaxSalesOrderID))
@@ -111,7 +116,8 @@ while True:
     TotalDue=SubTotal+TaxAmt+Freight
     Comment=fake.paragraph(nb_sentences=1, variable_nb_sentences=True, ext_word_list=None)
     ModifiedDate="getdate()"
-    mysql=f"INSERT INTO {SCHEMA}salesorderheader (RevisionNumber,OrderDate,DueDate,ShipDate,Status,PurchaseOrderNumber,AccountNumber,CustomerID,SalesPersonID,TerritoryID,BillToAddressID,ShipToAddressID,ShipMethodID,CreditCardID,CreditCardApprovalCode,CurrencyRateID,SubTotal,TaxAmt,Freight,Comment,ModifiedDate) VALUES ("
+    mysql=f"INSERT INTO {SCHEMA}salesorderheader (SalesOrderID,RevisionNumber,OrderDate,DueDate,ShipDate,Status,PurchaseOrderNumber,AccountNumber,CustomerID,SalesPersonID,TerritoryID,BillToAddressID,ShipToAddressID,ShipMethodID,CreditCardID,CreditCardApprovalCode,CurrencyRateID,SubTotal,TaxAmt,Freight,Comment,ModifiedDate) VALUES ("
+    mysql+="'"+SalesOrderID+"',"
     mysql+="'"+RevisionNumber+"',"
     mysql+="("+OrderDate+"),"
     mysql+="("+DueDate+"),"
