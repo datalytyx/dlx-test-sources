@@ -17,8 +17,8 @@ parser.add_argument('--password', metavar='N', help='mysql password')
 parser.add_argument('--type', metavar='N', help='mysql|mssql')
 parser.add_argument('--sleep', type=float, metavar='N', default=0, help='sleep seconds between row inserts')
 parser.add_argument('--schema', type=str, metavar='N', help='mssql schema name')
-parser.add_argument('--removeidsabove', type=str, metavar='N',
-                    help='Delete all rows with a SalesOrderId over this value')
+parser.add_argument('--removeidsabove', type=str, metavar='N', help='Delete all rows with a SalesOrderId over this value')
+parser.add_argument('--timeshifttonow', action="store_true")
 
 args = parser.parse_args()
 SCHEMA = ''
@@ -43,6 +43,18 @@ try:
         print("Truncating salesorderheader using: " + query)
         cursor.execute(query)
         connection.commit()
+    if args.timeshifttonow:
+        sqlcmd = """
+        declare @diff int
+        set @diff = (select DATEDIFF(SECOND, max(ModifiedDate), GETDATE()) from Sales.SalesOrderHeader)
+        update Sales.SalesOrderHeader set ModifiedDate = DATEADD(second, @diff, ModifiedDate)
+        """
+        print("Timeshifting using: " + sqlcmd)
+        cursor.execute(sqlcmd)
+        connection.commit()
+        cursor.execute(f"select max(ModifiedDate) from Sales.SalesOrderHeader")
+        maxdate = cursor.fetchall()
+        print("Max date is now: "+str(maxdate))
 
     if args.type == 'mssql':
         query = f"SET IDENTITY_INSERT {SCHEMA}salesorderheader ON"
