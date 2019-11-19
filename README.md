@@ -95,3 +95,20 @@ python3 -u adventureworks_incremental_data_generator.py  --host 127.0.0.1 --port
 ```
 
 Note the port number changing to point to different database_engine/dataset combinations. These scripts are not robust - loosing connection to their DB will cause them to exit. If you need them to be reliable, wrap them in a restart loop.
+
+​
+# Troubleshooting
+Issues raised while setting up incremental data generator for MSSQL Database
+* Type has to be provided in command line arguments when running program to connect to type of database selected "mysql or mssql"
+* Schema has to be provided for selecting a table
+* Primary key set to autoincrement cannot be provided explicitly. Identity insert has to be set on to do so
+* MySQL current timestamp function "now()" has to be changed to "getdate()" for MSSQL
+​
+# Notes
+Issues regarding the database used for incremental data generator:
+* "DueDate" and "ShipDate" set to day after "OrderDate" due to constraint that they cannot be less than "OrderDate"
+* "OnlineOrderFlag" not inserted explicitly and set to default as Flag data type parsed by python could not inserted back into database
+* "SalesOrderNumber" could not be inserted into table explicitly
+* Column 'ContactID' is not present in table 'salesorderheader'.
+* "TotalDue" could not be inserted into table explicitly
+* "rowguid" could not be inserted into table explicitly
