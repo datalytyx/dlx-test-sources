@@ -6,7 +6,7 @@ import sys
 import time
 import argparse
 import random
-import pymssql
+import pyodbc
 
 parser = argparse.ArgumentParser(description='AdventureWorks Incremental Data Generator')
 parser.add_argument('--host', metavar='host', help='mysql ip address')
@@ -30,8 +30,8 @@ try:
         SCHEMA = f'{args.database}.'
         cursor = connection.cursor()
     elif args.type == 'mssql':
-        connection = pymssql.connect(server=args.host, user=args.username, password=args.password,
-                                     database=args.database, port=args.port)
+        connection = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER=%s;PORT=%s;DATABASE=%s;UID=%s;PWD=%s" %
+                                    (args.host, args.port, args.database, args.username, args.password))
 
         SCHEMA = f'{args.database}.{args.schema}.'
         cursor = connection.cursor()
