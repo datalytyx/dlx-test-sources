@@ -96,15 +96,38 @@ python3 -u adventureworks_incremental_data_generator.py  --host 127.0.0.1 --port
 
 Note the port number changing to point to different database_engine/dataset combinations. These scripts are not robust - loosing connection to their DB will cause them to exit. If you need them to be reliable, wrap them in a restart loop.
 
+## Troubleshooting
 ​
-# Troubleshooting
-Issues raised while setting up incremental data generator for MSSQL Database
-* Type has to be provided in command line arguments when running program to connect to type of database selected "mysql or mssql"
-* Schema has to be provided for selecting a table
-* Primary key set to autoincrement cannot be provided explicitly. Identity insert has to be set on to do so
-* MySQL current timestamp function "now()" has to be changed to "getdate()" for MSSQL
+1.  `--type not set` occurring during execution
+    *   The updated script can be used for both **mysql** and **mssql**. Due to this type of database has to be specified for the execution of the incremental data generator
 ​
-# Notes
+2.  `ProgrammingError: Cannot find the object "database.None.salesorderheader"` exception encountered during execution of mssql incremental data generator
+    *   The MSSQL server saves tables in schemas defined in databases (compared to MYSQL where tables are in databases). Due to this the schema name is also required for the selected tables `salesorderheader`
+        
+        To provide schema add the following parameter for the execution of script
+        ```
+        --schema Sales
+        ```
+ 
+3.  Primary key can not be provided explicitly if set to autoincrement.
+    *   This occurs when a value is provided for a column which is set to autoincrement(and Primary Key). To resolve this addition code has to be added(already added) in incremental data generator to allow for explicit insertion of value for such columns.
+    
+        The code to be added to allow for for insertion is 
+        ```
+        query = f"SET IDENTITY_INSERT {SCHEMA}salesorderheader ON"
+        cursor.execute(query)
+        ```
+        This has to be added before insertion of any rows
+​
+4.  `ProgrammingError: 'now' is not a recognized built-in function name`
+    *   This error arises due to `now()` method being not available to **MSSQL**. The equivalent to `now()` in MSSQL is `getdate()` for getting the current TIMESTAMP.
+    
+        To resolve this add the following code snippet to script wherever `now()` function is used
+        ```
+        "now()" if args.type == 'mysql' else "getdate()"
+        ``` 
+​
+##### Notes:
 Issues regarding the database used for incremental data generator:
 * "DueDate" and "ShipDate" set to day after "OrderDate" due to constraint that they cannot be less than "OrderDate"
 * "OnlineOrderFlag" not inserted explicitly and set to default as Flag data type parsed by python could not inserted back into database
