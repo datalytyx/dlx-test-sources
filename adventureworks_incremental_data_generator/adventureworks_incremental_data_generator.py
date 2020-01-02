@@ -25,6 +25,23 @@ parser.add_argument('--file', type=str, default=None)
 args = parser.parse_args()
 SCHEMA = ''
 
+
+def save_row_record(row_id, counter):
+    if counter == 1:
+        row_details = {
+            'rowsInserted': 0,
+            'id': []
+        }
+    else:
+        with open(args.file, 'r') as file:
+            row_details = json.load(file)
+
+    with open(args.file, 'w') as file:
+        row_details['rowsInserted'] += 1
+        row_details['id'].append(row_id)
+        json.dump(row_details, file)
+
+
 try:
     if args.type == 'mysql':
         connection = mysql.connector.connect(host=args.host, port=args.port, database=args.database, user=args.username,
@@ -192,13 +209,7 @@ while True and (args.rows == 0 or loop_counter < args.rows):
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()
+    if args.file:
+        save_row_record(SalesOrderID, loop_counter)
     id_list.append(SalesOrderID)
     time.sleep(args.sleep)
-
-if args.file:
-    with open(args.file, 'w') as file:
-        row = {
-            'rowsInserted': loop_counter,
-            'id': id_list
-        }
-        json.dump(row, file)
