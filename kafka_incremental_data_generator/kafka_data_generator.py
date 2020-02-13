@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 from typing import Dict, Generator
 
 from faker import Faker
@@ -113,6 +114,7 @@ def send_message() -> None:
                 print('Messages inserted since start:', loop_counter)
     except KafkaError as e:
         print(f'Exception raised during execution:\n{e}')
+        sys.exit(1)
 
 
 send_message()
