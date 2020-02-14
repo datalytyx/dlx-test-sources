@@ -55,7 +55,8 @@ def get_last_message() -> Dict:
     Returns the last message of the queue in the specified topic
     :return: Dict of message if any message else None
     """
-    consumer = KafkaConsumer(value_deserializer=lambda m: json.loads(m.decode('ascii')),
+    consumer = KafkaConsumer(bootstrap_servers=args.host,
+                             value_deserializer=lambda m: json.loads(m.decode('ascii')),
                              enable_auto_commit=False,
                              auto_offset_reset='earliest')
     topic_partition = TopicPartition(topic=args.topic, partition=0)
