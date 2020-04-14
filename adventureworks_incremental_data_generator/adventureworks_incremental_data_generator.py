@@ -1,12 +1,12 @@
-import mysql.connector
-from mysql.connector import Error
-from faker import Faker
-import getopt
-import sys
-import time
 import argparse
+import json
 import random
-import pymssql
+import time
+
+import mysql.connector
+import pyodbc
+from faker import Faker
+from mysql.connector import Error
 
 parser = argparse.ArgumentParser(description='AdventureWorks Incremental Data Generator')
 parser.add_argument('--host', metavar='host', help='mysql ip address')
@@ -19,9 +19,28 @@ parser.add_argument('--sleep', type=float, metavar='N', default=0, help='sleep s
 parser.add_argument('--schema', type=str, metavar='N', help='mssql schema name')
 parser.add_argument('--removeidsabove', type=str, metavar='N', help='Delete all rows with a SalesOrderId over this value')
 parser.add_argument('--timeshifttonow', action="store_true")
+parser.add_argument('--rows', type=int, default=0)
+parser.add_argument('--file', type=str, default=None)
 
 args = parser.parse_args()
 SCHEMA = ''
+
+
+def save_row_record(row_id, counter):
+    if counter == 1:
+        row_details = {
+            'rowsInserted': 0,
+            'id': []
+        }
+    else:
+        with open(args.file, 'r') as file:
+            row_details = json.load(file)
+
+    with open(args.file, 'w') as file:
+        row_details['rowsInserted'] += 1
+        row_details['id'].append(row_id)
+        json.dump(row_details, file)
+
 
 try:
     if args.type == 'mysql':
@@ -30,8 +49,8 @@ try:
         SCHEMA = f'{args.database}.'
         cursor = connection.cursor()
     elif args.type == 'mssql':
-        connection = pymssql.connect(server=args.host, user=args.username, password=args.password,
-                                     database=args.database, port=args.port)
+        connection = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER=%s;PORT=%s;DATABASE=%s;UID=%s;PWD=%s" %
+                                    (args.host, args.port, args.database, args.username, args.password))
 
         SCHEMA = f'{args.database}.{args.schema}.'
         cursor = connection.cursor()
@@ -113,7 +132,8 @@ except Error as e:
 #        print("Connections closed")
 
 loop_counter = 0
-while True:
+id_list = []
+while True and (args.rows == 0 or loop_counter < args.rows):
     loop_counter = loop_counter + 1
     if (loop_counter % 100) == 0:
         print("Total rows inserted since start: ", loop_counter)
@@ -189,4 +209,7 @@ while True:
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()
+    if args.file:
+        save_row_record(SalesOrderID, loop_counter)
+    id_list.append(SalesOrderID)
     time.sleep(args.sleep)
