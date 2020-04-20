@@ -24,7 +24,9 @@ This has ONLY been tested running on an Ubuntu 18.04 and a recent version of doc
 
 To create, test and delete all the databases, a number of helper functions are required.
 
-```render.py``` is a python script that takes csv source and an action template and produces bash commands to execute. For example:
+```render.py``` is a python script that takes csv source and an action template and produces bash commands to execute.
+
+## Create data sources
 
 To create all data sources
 
@@ -32,7 +34,18 @@ To create all data sources
 
 NOTE: the create execution is VERY sensitive to being in the right folder. If you are not, everything will probably run fine but you'll end up with an empty database. If you find data not loading it's very likely this is the cause.
 
-To create all list sources
+1. Clone this project to the box you're running on.  You can't run it locally to 'generate' the docker command then copy/paste it to the target box as it needs the local resources on startup.
+2. Run the script above (or a filtered version, below) to start the docker containers
+
+If for example you want to just spin up a single sample database it might be simpler to ignore the piped bash command:
+1. Clone the project
+2. Say you want an adventureworks sample, so run ```python3 render.py --source source.csv --action create | grep adventureworks```
+3. Copy the line you want e.g. ```docker run -d  --name mysql5.7-adventureworks [etc.] $(pwd)/mysql-flex/adventureworks:/varlib/mysql-files/ mysql:5.7```
+4. Run that command manually
+
+## Other commands
+
+To create all listed sources
 
 ```python3 render.py --source source.csv --action list | bash```
 
