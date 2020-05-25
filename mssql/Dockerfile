@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/mssql/server:2017-latest-ubuntu
 
+ARG PASSWORD
+ARG SOURCE
+
 ENV SA_PASSWORD $PASSWORD
 ENV ACCEPT_EULA Y
 ENV MSSQL_PID Developer
