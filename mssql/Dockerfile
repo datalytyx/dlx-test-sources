@@ -6,7 +6,7 @@ ENV MSSQL_PID Developer
 
 
 RUN mkdir /database
-ADD $DATA_SET /database
+ADD $SOURCE /database
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
