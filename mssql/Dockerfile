@@ -7,7 +7,6 @@ ENV SA_PASSWORD $PASSWORD
 ENV ACCEPT_EULA Y
 ENV MSSQL_PID Developer
 
-
 RUN mkdir /database
 ADD $SOURCE /database
 
