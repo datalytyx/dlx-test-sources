@@ -1,12 +1,11 @@
 import argparse
 import logging
-import random
 import sys
 import time
 
 import colorlog
-from faker import Faker
 
+from data_generator.kafka_generator import Kafka
 from data_generator.mssql_generator import MSSQL
 from data_generator.mysql_generator import MySQL
 from data_generator.oracle_generator import Oracle
@@ -23,9 +22,8 @@ def __init_logger():
 
 
 def main():
-    
     __init_logger()
-    
+
     parser = argparse.ArgumentParser(description='Incremental Data Generator')
     parser.add_argument('-H', '--host',
                         type=str,
@@ -83,6 +81,7 @@ def main():
     parser.add_argument('--remove-ids-above',
                         type=str,
                         dest='ids',
+                        default=None,
                         help='Delete all rows with a id over this value')
     parser.add_argument('--time-shift-to-now',
                         dest='time_shift',
@@ -134,16 +133,17 @@ def main():
 
     db = None
     if args.db_type == 'mysql':
-        db = MySQL(args)
+        db = MySQL(args, logger)
     elif args.db_type == 'mssql':
-        db = MSSQL(args)
+        db = MSSQL(args, logger)
     elif args.db_type == 'postgresql':
-        db = PostgreSQL(args)
+        db = PostgreSQL(args, logger)
     elif args.db_type == 'oracle':
-        db = Oracle(args)
+        db = Oracle(args, logger)
     elif args.db_type == 'kafka':
-        db = Kafka(args)
+        db = Kafka(args, logger)
 
+    columns = db.get_column_values()
     loop_counter = 0
     while True and (args.rows == 0 or loop_counter < args.rows):
         loop_counter += 1
@@ -152,11 +152,8 @@ def main():
             if not args.rows:
                 log += f" out of {args.rows}"
             logger.info(log)
-        fake = Faker()
-        fake.seed_instance(loop_counter)  # by using the loop counter as a seed, the data is both random, but repeatable
-        random.seed(a=loop_counter, version=2)
-        columns = db.generate_column_values(loop_counter)
-        sql_query = db.generate_query(columns)
+        row = db.set_column_values(columns, loop_counter)
+        sql_query = db.generate_query(row)
         db.insert_and_commit(sql_query)
         time.sleep(args.sleep)
 

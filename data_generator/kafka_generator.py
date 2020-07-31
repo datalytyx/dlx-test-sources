@@ -1,12 +1,11 @@
 import json
 
 from kafka import KafkaProducer, KafkaConsumer
-from kafka.structs import TopicPartition
-from kafka.errors import KafkaError
 
 
 class Kafka:
-    def __init__(self, args):
+    def __init__(self, args, logger):
+        self.logger = logger
         self.producer = self.__init_producer(args)
         self.consumer = self.__init_consumer(args)
         self.topic = args.database
