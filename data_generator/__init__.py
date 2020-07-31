@@ -1,7 +1,16 @@
 import argparse
+import logging
+import random
 import sys
+import time
 
 import colorlog
+from faker import Faker
+
+from data_generator.mssql_generator import MSSQL
+from data_generator.mysql_generator import MySQL
+from data_generator.oracle_generator import Oracle
+from data_generator.postgresql_generator import PostgreSQL
 
 logger = colorlog.getLogger('data-generator')
 
@@ -10,6 +19,7 @@ def __init_logger():
     handler = colorlog.StreamHandler()
     handler.setFormatter(colorlog.ColoredFormatter('%(log_color)s%(levelname)s:%(name)s:%(message)s'))
     logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
 
 
 def main():
@@ -68,6 +78,7 @@ def main():
     parser.add_argument('--sleep',
                         type=int,
                         dest='sleep',
+                        default=0,
                         help='Sleep in seconds between row inserts')
     parser.add_argument('--remove-ids-above',
                         type=str,
@@ -110,8 +121,44 @@ def main():
             logger.error(f"Schema must tbe specified by -s or --schema if using db-type {args.db_type}")
             command_error = True
 
+    if args.counter < 1:
+        logger.error("Counter value cannot be less than 1")
+        command_error = True
+
+    if args.sleep < 0:
+        logger.error("Sleep value cannot be less than 0")
+        command_error = True
+
     if command_error:
         sys.exit(1)
+
+    db = None
+    if args.db_type == 'mysql':
+        db = MySQL(args)
+    elif args.db_type == 'mssql':
+        db = MSSQL(args)
+    elif args.db_type == 'postgresql':
+        db = PostgreSQL(args)
+    elif args.db_type == 'oracle':
+        db = Oracle(args)
+    elif args.db_type == 'kafka':
+        db = Kafka(args)
+
+    loop_counter = 0
+    while True and (args.rows == 0 or loop_counter < args.rows):
+        loop_counter += 1
+        if (loop_counter % args.counter) == 0:
+            log = f"Inserted {loop_counter} rows"
+            if not args.rows:
+                log += f" out of {args.rows}"
+            logger.info(log)
+        fake = Faker()
+        fake.seed_instance(loop_counter)  # by using the loop counter as a seed, the data is both random, but repeatable
+        random.seed(a=loop_counter, version=2)
+        columns = db.generate_column_values(loop_counter)
+        sql_query = db.generate_query(columns)
+        db.insert_and_commit(sql_query)
+        time.sleep(args.sleep)
 
 
 if __name__ == '__main__':

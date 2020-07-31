@@ -31,5 +31,6 @@ setup(
         'pyodbc==4.0.30',
         'cx-Oracle==8.0.0',
         'colorlog==4.2.1',
+        'psycopg2==2.8.5',
     ]
 )
