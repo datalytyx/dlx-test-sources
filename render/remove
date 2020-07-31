@@ -1,0 +1,5 @@
+# shell commands to remove sources. To execute pipe these to bash 
+{% for source in sources -%}
+docker rm -f {{source['source_db_engine']}}{{source['source_db_version']}}-{{source['source_data']}}
+{% endfor %}
+
