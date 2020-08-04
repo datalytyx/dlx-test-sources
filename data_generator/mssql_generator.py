@@ -1,3 +1,5 @@
+import random
+
 import pyodbc
 
 
@@ -81,8 +83,53 @@ class MSSQL:
 
         return column_values
 
-    def generate_query(self, columns):
-        return {}
+    @staticmethod
+    def set_column_values(columns, loop_counter, fake):
+        random.seed(a=loop_counter, version=2)
+        row = {
+            'SalesOrderID': str(columns['MaxSalesOrderId'] + loop_counter),
+            'RevisionNumber': str(fake.random_digit_not_null()),
+            'OrderDate': "getdate()",
+            'DueDate': "getdate() + 1",
+            'ShipDate': "getdate() + 2",
+            'Status': str(random.choice(columns['Statuss'])[0]),
+            'OnlineOrderFlag': str(random.choice(columns['OnlineOrderFlags'])[0]),
+            'SalesOrderNumber': str(fake.isbn10(separator="-")),
+            'PurchaseOrderNumber': str(fake.isbn13(separator="-")),
+            'AccountNumber': str(random.choice(columns['AccountNumbers'])[0]),
+            'CustomerID': str(random.choice(columns['CustomerIDs'])[0]),
+            'SalesPersonID': str(random.choice(columns['SalesPersonIDs'])[0]),
+            'TerritoryID': str(random.choice(columns['TerritoryIDs'])[0]),
+            'BillToAddressID': str(random.choice(columns['BillToAddressIDs'])[0]),
+            'ShipToAddressID': str(random.choice(columns['ShipToAddressIDs'])[0]),
+            'ShipMethodID': str(random.choice(columns['ShipMethodIDs'])[0]),
+            'CreditCardID': str(random.choice(columns['CreditCardIDs'])[0]),
+            'CreditCardApprovalCode': fake.credit_card_security_code(card_type=None),
+            'CurrencyRateID': str(random.choice(columns['CurrencyRateIDs'])[0]),
+            'SubTotal': random.random() * 300,
+            'Comment': fake.paragraph(nb_sentences=1, variable_nb_sentences=True, ext_word_list=None),
+            'ModifiedDate': "getdate()",
+        }
+        row['TaxAmt'] = row['SubTotal'] * random.random() * 20
+        row['Freight'] = row['SubTotal'] * random.random() * 30
+        row['TotalDue'] = row['SubTotal'] + row['TaxAmt'] + row['Freight']
+        return row
+
+    def generate_query(self, row):
+        sql_query = f"""
+        INSERT INTO \"{self.schema}\".\"{self.table}\" 
+        (SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, PurchaseOrderNumber, AccountNumber, 
+        CustomerID, SalesPersonID, TerritoryID, BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, 
+        CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, ModifiedDate) 
+        VALUES 
+        ('{row['SalesOrderID']}', '{row['RevisionNumber']}', ({row['OrderDate']}), ({row['DueDate']}), 
+        ({row['ShipDate']}), '{row['Status']}', '{row['PurchaseOrderNumber']}', '{row['AccountNumber']}', 
+        '{row['CustomerID']}', '{row['SalesPersonID']}', '{row['TerritoryID']}', '{row['BillToAddressID']}', 
+        '{row['ShipToAddressID']}', '{row['ShipMethodID']}', '{row['CreditCardID']}', '{row['CreditCardApprovalCode']}', 
+        '{row['CurrencyRateID']}', '{str(row['SubTotal'])}', '{str(row['TaxAmt'])}', '{str(row['Freight'])}', 
+        '{row['Comment']}', ({row['ModifiedDate']}))
+        """
+        return sql_query
 
     def insert_and_commit(self, sql_query):
         self.__run_query(sql_query)

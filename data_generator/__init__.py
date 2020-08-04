@@ -1,9 +1,11 @@
 import argparse
 import logging
+import random
 import sys
 import time
 
 import colorlog
+from faker import Faker
 
 from data_generator.kafka_generator import Kafka
 from data_generator.mssql_generator import MSSQL
@@ -152,8 +154,11 @@ def main():
             if not args.rows:
                 log += f" out of {args.rows}"
             logger.info(log)
-        row = db.set_column_values(columns, loop_counter)
+        fake = Faker()
+        fake.seed_instance(loop_counter)  # by using the loop counter as a seed, the data is both random, but repeatable
+        row = db.set_column_values(columns, loop_counter, fake)
         sql_query = db.generate_query(row)
+        print(sql_query)
         db.insert_and_commit(sql_query)
         time.sleep(args.sleep)
 
