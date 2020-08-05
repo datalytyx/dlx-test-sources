@@ -113,7 +113,7 @@ def main():
             logger.error(f"Password must tbe specified by -P or --password if using db-type {args.db_type}")
             command_error = True
         if not args.table:
-            logger.error(f"Password must tbe specified by -t or --table if using db-type {args.db_type}")
+            logger.error(f"Table must tbe specified by -t or --table if using db-type {args.db_type}")
             command_error = True
 
     if args.db_type == 'mssql' or 'postresql' or 'oracle':
