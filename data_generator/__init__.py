@@ -157,7 +157,7 @@ def main():
         fake.seed_instance(loop_counter)  # by using the loop counter as a seed, the data is both random, but repeatable
         row = db.set_column_values(columns, loop_counter, fake)
         sql_query = db.generate_query(row)
-        print(sql_query)
+        # print(sql_query)
         db.insert_and_commit(sql_query)
         time.sleep(args.sleep)
 
