@@ -41,18 +41,6 @@ class MySQL:
                     f"WHERE RevisionNumber IS NOT NULL ORDER BY 1"
         column_values['RevisionNumbers'] = self.__run_query(sql_query).fetchall()
 
-        sql_query = f"SELECT OrderDate from {self.table} " \
-                    f"WHERE OrderDate IS NOT NULL"
-        column_values['OrderDates'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DueDate from {self.table} " \
-                    f"WHERE DueDate IS NOT NULL"
-        column_values['DueDates'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT ShipDate from {self.table} " \
-                    f"WHERE ShipDate IS NOT NULL"
-        column_values['ShipDates'] = self.__run_query(sql_query).fetchall()
-
         sql_query = f"SELECT DISTINCT(Status) from {self.table} " \
                     f"WHERE Status IS NOT NULL ORDER BY 1"
         column_values['Statuss'] = self.__run_query(sql_query).fetchall()
@@ -112,34 +100,6 @@ class MySQL:
         sql_query = f"SELECT DISTINCT(CurrencyRateID) from {self.table} " \
                     f"WHERE CurrencyRateID IS NOT NULL ORDER BY 1"
         column_values['CurrencyRateIDs'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(SubTotal) from {self.table} " \
-                    f"WHERE SubTotal IS NOT NULL ORDER BY 1"
-        column_values['SubTotals'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(TaxAmt) from {self.table} " \
-                    f"WHERE TaxAmt IS NOT NULL ORDER BY 1"
-        column_values['TaxAmts'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(Freight) from {self.table} " \
-                    f"WHERE Freight IS NOT NULL ORDER BY 1"
-        column_values['Freights'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(TotalDue) from {self.table} " \
-                    f"WHERE TotalDue IS NOT NULL ORDER BY 1"
-        column_values['TotalDues'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(Comment) from {self.table} " \
-                    f"WHERE Comment IS NOT NULL ORDER BY 1"
-        column_values['Comments'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(rowguid) from {self.table} " \
-                    f"WHERE rowguid IS NOT NULL ORDER BY 1"
-        column_values['rowguids'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(ModifiedDate) from {self.table} " \
-                    f"WHERE ModifiedDate IS NOT NULL ORDER BY 1"
-        column_values['ModifiedDates'] = self.__run_query(sql_query).fetchall()
 
         return column_values
 

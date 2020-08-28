@@ -33,7 +33,6 @@ def main():
                         required=True,
                         help='Database IP Address')
     parser.add_argument('-p', '--port',
-                        type=int,
                         dest='port',
                         help='Database Post')
     parser.add_argument('--db-type', '-d',
@@ -116,7 +115,7 @@ def main():
             logger.error(f"Table must tbe specified by -t or --table if using db-type {args.db_type}")
             command_error = True
 
-    if (args.db_type == 'postgresql') or (args.db_type == 'oracle'):
+    if (args.db_type == 'postgresql') or (args.db_type == 'oracle') or (args.db_type == 'mssql'):
         if not args.schema:
             logger.error(f"Schema must tbe specified by -s or --schema if using db-type {args.db_type}")
             command_error = True
