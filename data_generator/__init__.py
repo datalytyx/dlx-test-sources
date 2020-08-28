@@ -33,7 +33,6 @@ def main():
                         required=True,
                         help='Database IP Address')
     parser.add_argument('-p', '--port',
-                        type=int,
                         dest='port',
                         help='Database Post')
     parser.add_argument('--db-type', '-d',
