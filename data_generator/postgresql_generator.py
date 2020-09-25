@@ -6,8 +6,8 @@ import psycopg2
 class PostgreSQL:
     def __init__(self, args, logger):
         self.logger = logger
-        self.logger.warn("Currently only the table 'SalesOrderheader' present in schema 'Sales' in dataset "
-                         "AdventureWorks is supported")
+        self.logger.warn("Currently only the tables 'SalesOrderheader' and 'Customer' present in "
+                         "schema 'Sales' in dataset AdventureWorks are supported")
         self.connection = self.__init_connection(args)
         self.cursor = self.__get_cursor()
         self.schema = args.schema
@@ -33,27 +33,9 @@ class PostgreSQL:
         self.cursor.execute(sql_query)
         return self.cursor
 
-    def get_column_values(self):
-        column_values = {}
-
+    def get_salesorderheader(self, column_values):
         sql_query = f"SELECT MAX(salesorderid) FROM \"{self.schema}\".\"{self.table}\""
         column_values['MaxSalesOrderId'] = self.__run_query(sql_query).fetchone()[0]
-
-        sql_query = f"SELECT DISTINCT(revisionnumber) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE RevisionNumber IS NOT NULL ORDER BY 1"
-        column_values['RevisionNumbers'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(orderdate) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE OrderDate IS NOT NULL ORDER BY 1"
-        column_values['OrderDates'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(duedate) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE DueDate IS NOT NULL ORDER BY 1"
-        column_values['DueDates'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(shipdate) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE ShipDate IS NOT NULL ORDER BY 1"
-        column_values['ShipDates'] = self.__run_query(sql_query).fetchall()
 
         sql_query = f"SELECT DISTINCT(status) FROM \"{self.schema}\".\"{self.table}\" " \
                     f"WHERE Status IS NOT NULL ORDER BY 1"
@@ -62,10 +44,6 @@ class PostgreSQL:
         sql_query = f"SELECT DISTINCT(onlineorderflag) FROM \"{self.schema}\".\"{self.table}\" " \
                     f"WHERE OnlineOrderFlag IS NOT NULL ORDER BY 1"
         column_values['OnlineOrderFlags'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(purchaseordernumber) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE PurchaseOrderNumber IS NOT NULL ORDER BY 1"
-        column_values['PurchaseOrderNumbers'] = self.__run_query(sql_query).fetchall()
 
         sql_query = f"SELECT DISTINCT(accountnumber) FROM \"{self.schema}\".\"{self.table}\" " \
                     f"WHERE AccountNumber IS NOT NULL ORDER BY 1"
@@ -99,45 +77,37 @@ class PostgreSQL:
                     f"WHERE CreditCardID IS NOT NULL ORDER BY 1"
         column_values['CreditCardIDs'] = self.__run_query(sql_query).fetchall()
 
-        sql_query = f"SELECT DISTINCT(creditcardapprovalcode) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE CreditCardApprovalCode IS NOT NULL ORDER BY 1"
-        column_values['CreditCardApprovalCodes'] = self.__run_query(sql_query).fetchall()
-
         sql_query = f"SELECT DISTINCT(currencyrateid) FROM \"{self.schema}\".\"{self.table}\" " \
                     f"WHERE CurrencyRateID IS NOT NULL ORDER BY 1"
         column_values['CurrencyRateIDs'] = self.__run_query(sql_query).fetchall()
 
-        sql_query = f"SELECT DISTINCT(subtotal) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE SubTotal IS NOT NULL ORDER BY 1"
-        column_values['SubTotals'] = self.__run_query(sql_query).fetchall()
+    def get_customer(self, column_values):
+        sql_query = f"SELECT MAX(customerid) FROM \"{self.schema}\".\"{self.table}\""
+        column_values['MaxCustomerId'] = self.__run_query(sql_query).fetchone()[0]
 
-        sql_query = f"SELECT DISTINCT(taxamt) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE TaxAmt IS NOT NULL ORDER BY 1"
-        column_values['TaxAmts'] = self.__run_query(sql_query).fetchall()
+        sql_query = f"SELECT DISTINCT(personid) FROM \"{self.schema}\".\"{self.table}\" " \
+                    f"WHERE personid IS NOT NULL ORDER BY 1"
+        column_values['PersonIDs'] = self.__run_query(sql_query).fetchall()
 
-        sql_query = f"SELECT DISTINCT(freight) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE Freight IS NOT NULL ORDER BY 1"
-        column_values['Freights'] = self.__run_query(sql_query).fetchall()
+        sql_query = f"SELECT DISTINCT(storeid) FROM \"{self.schema}\".\"{self.table}\" " \
+                    f"WHERE storeid IS NOT NULL ORDER BY 1"
+        column_values['StoreIDs'] = self.__run_query(sql_query).fetchall()
 
-        sql_query = f"SELECT DISTINCT(totaldue) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE TotalDue IS NOT NULL ORDER BY 1"
-        column_values['TotalDues'] = self.__run_query(sql_query).fetchall()
+        sql_query = f"SELECT DISTINCT(territoryid) FROM \"{self.schema}\".\"{self.table}\" " \
+                    f"WHERE territoryid IS NOT NULL ORDER BY 1"
+        column_values['TerritoryIDs'] = self.__run_query(sql_query).fetchall()
 
-        sql_query = f"SELECT DISTINCT(comment) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE Comment IS NOT NULL ORDER BY 1"
-        column_values['Comments'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(rowguid) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE RowGuid IS NOT NULL ORDER BY 1"
-        column_values['RowGuids'] = self.__run_query(sql_query).fetchall()
-
-        sql_query = f"SELECT DISTINCT(modifieddate) FROM \"{self.schema}\".\"{self.table}\" " \
-                    f"WHERE ModifiedDate IS NOT NULL ORDER BY 1"
-        column_values['ModifiedDates'] = self.__run_query(sql_query).fetchall()
+    def get_column_values(self):
+        column_values = {}
+        if self.table.lower() == 'salesorderheader':
+            self.get_salesorderheader(column_values)
+        elif self.table.lower() == 'customer':
+            self.get_customer(column_values)
 
         return column_values
 
-    def set_column_values(self, columns, loop_counter, fake):
+    @staticmethod
+    def set_salesorderheader(columns, loop_counter, fake):
         random.seed(a=loop_counter, version=2)
         row = {
             'MaxSalesOrderId': str(columns['MaxSalesOrderId'] + loop_counter),
@@ -168,8 +138,30 @@ class PostgreSQL:
         row['TotalDue'] = row['SubTotal'] + row['TaxAmt'] + row['Freight']
         return row
 
-    # def generate_query(self, columns):
-    def generate_query(self, row):
+    @staticmethod
+    def set_customer(columns, loop_counter, fake):
+        random.seed(a=loop_counter, version=2)
+        row = {
+            'CustomerID': str(columns['MaxCustomerId'] + loop_counter),
+            'PersonID': str(random.choice(columns['PersonIDs'])[0]),
+            'StoreID': str(random.choice(columns['StoreIDs'])[0]),
+            'TerritoryID': str(random.choice(columns['TerritoryIDs'])[0]),
+            'RowGuid': "uuid_generate_v1()",
+            'ModifiedDate': "now()",
+        }
+
+        return row
+
+    def set_column_values(self, columns, loop_counter, fake):
+        row = {}
+        if self.table.lower() == 'salesorderheader':
+            row = PostgreSQL.set_salesorderheader(columns, loop_counter, fake)
+        elif self.table.lower() == 'customer':
+            row = PostgreSQL.set_customer(columns, loop_counter, fake)
+
+        return row
+
+    def query_salesorderheader(self, row):
         sql_query = f"""
         INSERT INTO "{self.schema}"."{self.table}"
         (salesorderid, revisionnumber, orderdate, duedate, shipdate, status, onlineorderflag, purchaseordernumber,
@@ -184,6 +176,26 @@ class PostgreSQL:
         '{row['CreditCardApprovalCode']}', '{row['CurrencyRateID']}', '{row['SubTotal']}', '{row['TaxAmt']}', 
         '{row['Freight']}', '{row['TotalDue']}', '{row['Comment']}', '{row['RowGuid']}', {row['ModifiedDate']})
         """
+
+        return sql_query
+
+    def query_customer(self, row):
+        sql_query = f"""
+        INSERT INTO \"{self.schema}\".\"{self.table}\" 
+        (customerid, personid, storeid, territoryid, rowguid, modifieddate) 
+        VALUES 
+        ({row['CustomerID']}, {row['PersonID']}, {row['StoreID']}, {row['TerritoryID']}, 
+        ({row['RowGuid']}), ({row['ModifiedDate']}))
+        """
+        return sql_query
+
+    def generate_query(self, row):
+        sql_query = ""
+        if self.table.lower() == 'salesorderheader':
+            sql_query = self.query_salesorderheader(row)
+        elif self.table.lower() == 'customer':
+            sql_query = self.query_customer(row)
+
         return sql_query
 
     def insert_and_commit(self, sql_query):

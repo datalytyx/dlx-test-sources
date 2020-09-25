@@ -6,8 +6,8 @@ import pyodbc
 class MSSQL:
     def __init__(self, args, logger):
         self.logger = logger
-        self.logger.warn("Currently only the table 'SalesOrderHeader' present in schema 'Sales' in dataset "
-                         "AdventureWorks is supported")
+        self.logger.warn("Currently only the tables 'SalesOrderHeader' and 'Customer' present in "
+                         "schema 'Sales' in dataset AdventureWorks are supported")
         self.connection = self.__init_connection(args)
         self.cursor = self.__get_cursor()
         self.schema = args.schema
@@ -32,8 +32,7 @@ class MSSQL:
     def __run_query(self, sql_query):
         return self.cursor.execute(sql_query)
 
-    def get_column_values(self):
-        column_values = {}
+    def get_salesorderheader(self, column_values):
         sql_query = f"SELECT MAX(SalesOrderID) from \"{self.schema}\".\"{self.table}\""
         column_values['MaxSalesOrderId'] = self.__run_query(sql_query).fetchone()[0]
 
@@ -81,10 +80,33 @@ class MSSQL:
                     f"WHERE SalesPersonID IS NOT NULL ORDER BY 1"
         column_values['SalesPersonIDs'] = self.__run_query(sql_query).fetchall()
 
+    def get_customer(self, column_values):
+        sql_query = f"SELECT MAX(CustomerID) from \"{self.schema}\".\"{self.table}\""
+        column_values['MaxCustomerId'] = self.__run_query(sql_query).fetchone()[0]
+
+        sql_query = f"SELECT DISTINCT(PersonID) FROM \"{self.schema}\".{self.table} " \
+                    f"WHERE PersonID IS NOT NULL ORDER BY 1"
+        column_values['PersonIDs'] = self.__run_query(sql_query).fetchall()
+
+        sql_query = f"SELECT DISTINCT(StoreID) FROM \"{self.schema}\".{self.table} " \
+                    f"WHERE StoreID IS NOT NULL ORDER BY 1"
+        column_values['StoreIDs'] = self.__run_query(sql_query).fetchall()
+
+        sql_query = f"SELECT DISTINCT(TerritoryID) FROM \"{self.schema}\".{self.table} " \
+                    f"WHERE TerritoryID IS NOT NULL ORDER BY 1"
+        column_values['TerritoryIDs'] = self.__run_query(sql_query).fetchall()
+
+    def get_column_values(self):
+        column_values = {}
+        if self.table.lower() == 'salesorderheader':
+            self.get_salesorderheader(column_values)
+        elif self.table.lower() == 'customer':
+            self.get_customer(column_values)
+
         return column_values
 
     @staticmethod
-    def set_column_values(columns, loop_counter, fake):
+    def set_salesorderheader(columns, loop_counter, fake):
         random.seed(a=loop_counter, version=2)
         row = {
             'SalesOrderID': str(columns['MaxSalesOrderId'] + loop_counter),
@@ -113,9 +135,43 @@ class MSSQL:
         row['TaxAmt'] = row['SubTotal'] * random.random() * 20
         row['Freight'] = row['SubTotal'] * random.random() * 30
         row['TotalDue'] = row['SubTotal'] + row['TaxAmt'] + row['Freight']
+
         return row
 
-    def generate_query(self, row):
+    @staticmethod
+    def set_customer(columns, loop_counter, fake):
+        random.seed(a=loop_counter, version=2)
+        row = {
+            'CustomerID': str(columns['MaxCustomerId'] + loop_counter),
+            'PersonID': str(random.choice(columns['PersonIDs'])[0]),
+            'StoreID': str(random.choice(columns['StoreIDs'])[0]),
+            'TerritoryID': str(random.choice(columns['TerritoryIDs'])[0]),
+            'RowGuid': "newid()",
+            'ModifiedDate': "getdate()",
+        }
+
+        return row
+
+    def set_column_values(self, columns, loop_counter, fake):
+        row = {}
+        if self.table.lower() == 'salesorderheader':
+            row = MSSQL.set_salesorderheader(columns, loop_counter, fake)
+        elif self.table.lower() == 'customer':
+            row = MSSQL.set_customer(columns, loop_counter, fake)
+
+        return row
+
+    def query_customer(self, row):
+        sql_query = f"""
+        INSERT INTO \"{self.schema}\".\"{self.table}\" 
+        (CustomerID, PersonID, StoreID, TerritoryID, rowguid, ModifiedDate) 
+        VALUES 
+        ({row['CustomerID']}, {row['PersonID']}, {row['StoreID']}, {row['TerritoryID']}, 
+        ({row['RowGuid']}), ({row['ModifiedDate']}))
+        """
+        return sql_query
+
+    def query_salesorderheader(self, row):
         sql_query = f"""
         INSERT INTO \"{self.schema}\".\"{self.table}\" 
         (SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, PurchaseOrderNumber, AccountNumber, 
@@ -129,6 +185,16 @@ class MSSQL:
         '{row['CurrencyRateID']}', '{str(row['SubTotal'])}', '{str(row['TaxAmt'])}', '{str(row['Freight'])}', 
         '{row['Comment']}', ({row['ModifiedDate']}))
         """
+
+        return sql_query
+
+    def generate_query(self, row):
+        sql_query = ""
+        if self.table.lower() == 'salesorderheader':
+            sql_query = self.query_salesorderheader(row)
+        elif self.table.lower() == 'customer':
+            sql_query = self.query_customer(row)
+
         return sql_query
 
     def insert_and_commit(self, sql_query):
