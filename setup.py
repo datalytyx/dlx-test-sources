@@ -24,7 +24,7 @@ setup(
         ]
     },
     install_requires=[
-        'jinja2==2.11.2',
+        'jinja2==2.11.3',
         'kafka-python==2.0.1',
         'Faker==4.1.1',
         'mysql-connector-python==8.0.21',
